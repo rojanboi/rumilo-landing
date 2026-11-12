@@ -8,6 +8,14 @@
                      that one only delivers to the address of the Resend account owner.
      CONTACT_TO      optional, comma-separated. Overrides the recipients listed below.
 
+   Until a domain is verified in Resend, Resend refuses every recipient except the
+   owner of the Resend account. In that case the request is delivered to the owner
+   alone (with a note in the letter), so the form works from day one.
+
+   Check the setup by opening /api/contact in a browser: it answers with JSON that
+   says whether the key is visible to the function. After changing a variable on
+   Vercel, redeploy; running deployments keep the old values.
+
    The form posts JSON when JavaScript runs and a regular form body when it does not;
    both are handled here. */
 'use strict';
@@ -75,9 +83,35 @@ function page(lang, ok, message) {
     '<a href="/#contact">' + escapeHtml(t.back) + '</a></main></body></html>';
 }
 
+async function sendWithResend(apiKey, email) {
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: 'Bearer ' + apiKey, 'Content-Type': 'application/json' },
+    body: JSON.stringify(email)
+  });
+  return { ok: response.ok, status: response.status, text: response.ok ? '' : await response.text() };
+}
+
+// Resend's "testing only" refusal names the one address it would deliver to.
+function ownerFromRefusal(text) {
+  const match = /\(([^()\s]+@[^()\s]+)\)/.exec(text || '');
+  return match && EMAIL_RE.test(match[1]) ? match[1] : null;
+}
+
 module.exports = async function handler(req, res) {
+  // Setup check for the team: no secrets, only whether the settings are in place.
+  if (req.method === 'GET') {
+    res.setHeader('Cache-Control', 'no-store');
+    return res.status(200).json({
+      ok: true,
+      service: 'rumilo contact form',
+      apiKey: Boolean(process.env.RESEND_API_KEY),
+      sender: process.env.CONTACT_FROM ? 'CONTACT_FROM' : 'resend test sender (delivers to the account owner only)',
+      recipients: recipients().length
+    });
+  }
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
+    res.setHeader('Allow', 'GET, POST');
     return res.status(405).json({ ok: false, error: 'method_not_allowed' });
   }
 
@@ -141,14 +175,29 @@ module.exports = async function handler(req, res) {
   if (EMAIL_RE.test(data.reach)) email.reply_to = data.reach;
 
   try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: 'Bearer ' + apiKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify(email)
-    });
-    if (!response.ok) {
-      console.error('contact: Resend answered', response.status, await response.text());
-      return reply(502, false, 'send_failed', t.fail);
+    let result = await sendWithResend(apiKey, email);
+
+    // 403 = Resend will not send this: the sender's domain is not verified, or the
+    // account is still in testing mode. Fall back step by step to what it does allow.
+    if (!result.ok && result.status === 403 && email.from !== TEST_SENDER && !ownerFromRefusal(result.text)) {
+      console.warn('contact: CONTACT_FROM was refused, retrying with the Resend test sender.', result.text);
+      email.from = TEST_SENDER;
+      result = await sendWithResend(apiKey, email);
+    }
+    const owner = !result.ok && result.status === 403 ? ownerFromRefusal(result.text) : null;
+    if (owner) {
+      console.warn('contact: no verified sending domain, delivering to the Resend account owner only.');
+      email.from = TEST_SENDER;
+      email.to = [owner];
+      email.text += '\n\nNote: this letter reached only the owner of the Resend account. ' +
+        'To deliver to the whole team, verify a domain at resend.com/domains and set CONTACT_FROM.';
+      result = await sendWithResend(apiKey, email);
+    }
+
+    if (!result.ok) {
+      console.error('contact: Resend answered', result.status, result.text);
+      const error = result.status === 401 ? 'bad_api_key' : result.status === 403 ? 'sender_not_allowed' : 'send_failed';
+      return reply(502, false, error, t.fail);
     }
   } catch (err) {
     console.error('contact: request to Resend failed', err);

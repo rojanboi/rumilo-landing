@@ -41,22 +41,47 @@
   <div class="wrap site-header__bar" data-header-bar>
     <a class="brand" href="#top"><img src="assets/img/logo/rumilo-horizontal-white.svg" alt="Rumilo" width="123" height="22"></a>
     <nav class="nav" aria-label="Nawigacja główna" data-i18n-attr="aria-label:nav.label">
-      <button type="button" class="menu-toggle" popovertarget="site-menu" popovertargetaction="toggle" aria-controls="site-menu"><svg class="menu-toggle__icon" viewBox="0 0 24 18" aria-hidden="true" focusable="false"><g class="bar bar--1"><rect class="f" x="0" y="0" width="15" height="4"/><rect class="s" x="15" y="0" width="9" height="4"/></g><g class="bar bar--2"><rect class="f" x="0" y="7" width="15" height="4"/><rect class="s" x="15" y="7" width="9" height="4"/></g><g class="bar bar--3"><rect class="f" x="0" y="14" width="15" height="4"/><rect class="s" x="15" y="14" width="9" height="4"/></g></svg><span class="visually-hidden" data-i18n="nav.menu">Menu</span></button>
-      <ul id="site-menu" class="site-menu" popover="auto" data-menu>
+      <ul class="site-menu" data-menu>
         <li><a href="#product" data-i18n="nav.product">Produkt</a></li>
         <li><a href="#modules" data-i18n="nav.modules">Moduły</a></li>
         <li><a href="#audience" data-i18n="nav.audience">Dla kogo</a></li>
         <li><a href="#why" data-i18n="nav.why">Dlaczego Rumilo</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
-        <li class="site-menu__lang"><div class="lang" role="group" aria-label="Język" data-i18n-attr="aria-label:nav.lang"><button type="button" data-lang="pl" aria-pressed="true">PL</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button></div></li>
       </ul>
     </nav>
     <div class="header-actions">
       <div class="lang" role="group" aria-label="Język" data-i18n-attr="aria-label:nav.lang"><button type="button" data-lang="pl" aria-pressed="true">PL</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+      <button type="button" class="menu-toggle" data-menu-open aria-expanded="false" aria-controls="menu-drawer"><svg class="menu-toggle__icon" viewBox="0 0 24 18" aria-hidden="true" focusable="false"><rect x="0" y="0" width="24" height="4"/><rect x="0" y="7" width="24" height="4"/><rect x="0" y="14" width="24" height="4"/></svg><span class="visually-hidden" data-i18n="nav.menu">Menu</span></button>
       <a class="btn btn--solid btn--sm" href="#contact" data-cta-call data-i18n="cta.call">Umów rozmowę</a>
     </div>
   </div>
 </header>
+
+<!-- Menu for narrow screens: a full-screen panel that slides in from the right.
+     A modal dialog, so the page behind it is inert; main.js opens and closes it. -->
+<dialog class="drawer" id="menu-drawer" aria-label="Menu" data-i18n-attr="aria-label:nav.menu" data-drawer>
+  <div class="drawer__scroller" data-drawer-scroller>
+    <div class="drawer__sheet" data-drawer-sheet>
+      <div class="drawer__top">
+        <img src="assets/img/logo/rumilo-horizontal-white.svg" alt="Rumilo" width="123" height="22">
+        <button type="button" class="drawer__close" data-drawer-close autofocus aria-label="Zamknij menu" data-i18n-attr="aria-label:nav.close"><svg class="drawer__close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l16 16M20 4L4 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></svg></button>
+      </div>
+      <nav class="drawer__nav" aria-label="Nawigacja główna" data-i18n-attr="aria-label:nav.label">
+        <ul>
+          <li><a href="#product" data-i18n="nav.product">Produkt</a></li>
+          <li><a href="#modules" data-i18n="nav.modules">Moduły</a></li>
+          <li><a href="#audience" data-i18n="nav.audience">Dla kogo</a></li>
+          <li><a href="#why" data-i18n="nav.why">Dlaczego Rumilo</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="drawer__foot">
+        <div class="lang" role="group" aria-label="Język" data-i18n-attr="aria-label:nav.lang"><button type="button" data-lang="pl" aria-pressed="true">PL</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+        <a class="btn btn--solid" href="#contact" data-cta-call data-i18n="cta.call">Umów rozmowę</a>
+      </div>
+    </div>
+  </div>
+</dialog>
 
 <main id="main">
 

@@ -392,64 +392,33 @@
   });
 
   /* ---------- navigation ----------
-     The link list is a native popover while the header row does not fit and an
-     inline row when it does. No breakpoint: the row is measured, so a longer
-     translation or larger text moves the switch point by itself. */
+     Wide: the links sit in the header row. When the row does not fit (it is measured,
+     there is no fixed breakpoint, so a longer translation moves the switch point by
+     itself) the header keeps logo, menu button and call to action, and the links
+     live in the full-screen menu: a modal <dialog> that slides in from the right. */
 
   var header = document.querySelector('[data-header]');
   var headerBar = document.querySelector('[data-header-bar]');
   var menu = document.querySelector('[data-menu]');
-  var menuBtn = header ? header.querySelector('.menu-toggle') : null;
-  var hasPopover = 'popover' in HTMLElement.prototype;
   var lastHeaderWidth = 0;
 
-  function menuIsOpen() {
-    if (!hasPopover) return header.classList.contains('is-open');
-    try { return menu.matches(':popover-open'); } catch (e) { return false; }
-  }
+  var drawer = document.querySelector('[data-drawer]');
+  var drawerScroller = drawer ? drawer.querySelector('[data-drawer-scroller]') : null;
+  var drawerSheet = drawer ? drawer.querySelector('[data-drawer-sheet]') : null;
+  var drawerOpenBtn = document.querySelector('[data-menu-open]');
+  var drawerState = 'closed'; // closed → opening → open → closing → closed
+  var drawerTimer = null;
 
   function syncNav() {
-    if (!header || !headerBar || !menu) return;
-    var wasOpen = menuIsOpen();
+    if (!header || !headerBar) return;
     header.classList.add('is-measuring', 'is-wide');
-    menu.removeAttribute('popover');
     var wide = headerBar.scrollWidth <= headerBar.clientWidth;
     header.classList.toggle('is-wide', wide);
-    if (wide) {
-      header.classList.remove('is-open');
-    } else if (hasPopover) {
-      menu.setAttribute('popover', 'auto');
-      if (wasOpen) menu.showPopover();
-    }
+    if (wide && drawerState !== 'closed') finishClosingDrawer(); // the links are back in the bar
     window.requestAnimationFrame(function () { header.classList.remove('is-measuring'); });
   }
 
   if (header && menu) {
-    if (!hasPopover) {
-      // manual fallback: a plain disclosure
-      header.classList.add('no-popover');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.addEventListener('click', function () {
-        var open = !header.classList.contains('is-open');
-        header.classList.toggle('is-open', open);
-        menuBtn.setAttribute('aria-expanded', String(open));
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && header.classList.contains('is-open')) {
-          header.classList.remove('is-open');
-          menuBtn.setAttribute('aria-expanded', 'false');
-          menuBtn.focus();
-        }
-      });
-    }
-
-    // following a link closes the open menu
-    menu.addEventListener('click', function (e) {
-      if (!e.target.closest('a') || header.classList.contains('is-wide')) return;
-      if (hasPopover) { if (menuIsOpen()) menu.hidePopover(); }
-      else { header.classList.remove('is-open'); menuBtn.setAttribute('aria-expanded', 'false'); }
-    });
-
     if ('ResizeObserver' in window) {
       // while collapsed, remeasure only when the header has grown (avoids layout thrash)
       var ro = new ResizeObserver(function () {
@@ -461,6 +430,88 @@
       ro.observe(menu);
     } else {
       window.addEventListener('resize', syncNav);
+    }
+  }
+
+  // The panel is the second of two snap stops in a horizontal scroller: at the start
+  // of the scroll it is off-screen (closed), at the end it covers the screen (open).
+  // Scrolling is the slide; an observer on the panel reports when it has left the
+  // screen, and only then is the dialog closed, so the slide-out stays visible.
+  function openDrawer() {
+    if (!drawer || !drawer.showModal || drawerState !== 'closed') return;
+    drawerState = 'opening';
+    drawer.showModal();
+    drawerOpenBtn.setAttribute('aria-expanded', 'true');
+    drawerScroller.scrollTo({ left: drawerScroller.scrollWidth, behavior: 'auto' });
+    // safety net: if the slide did not happen (for example the tab is not painting), jump
+    window.clearTimeout(drawerTimer);
+    drawerTimer = window.setTimeout(function () {
+      if (drawerState !== 'opening') return;
+      drawerScroller.scrollTo({ left: drawerScroller.scrollWidth, behavior: 'instant' });
+      drawerState = 'open';
+    }, 1200);
+  }
+
+  function closeDrawer() {
+    if (!drawer || drawerState === 'closed' || drawerState === 'closing') return;
+    drawerState = 'closing';
+    drawerScroller.scrollTo({ left: 0, behavior: 'auto' });
+    window.clearTimeout(drawerTimer);
+    drawerTimer = window.setTimeout(function () {
+      if (drawerState === 'closing') finishClosingDrawer();
+    }, 1200);
+  }
+
+  function finishClosingDrawer() {
+    window.clearTimeout(drawerTimer);
+    drawerState = 'closed';
+    if (drawer.open) drawer.close(); // the browser returns focus to the menu button
+    drawerOpenBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  if (drawer && drawerOpenBtn) {
+    drawerOpenBtn.addEventListener('click', openDrawer);
+    all('[data-drawer-close]', drawer).forEach(function (btn) {
+      btn.addEventListener('click', closeDrawer);
+    });
+    // following a link (or the call to action) closes the menu
+    drawerSheet.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeDrawer();
+    });
+    // Escape: slide out instead of disappearing at once
+    drawer.addEventListener('cancel', function (e) {
+      if (e.cancelable) {
+        e.preventDefault();
+        closeDrawer();
+      } else {
+        finishClosingDrawer();
+      }
+    });
+    drawer.addEventListener('close', function () {
+      if (drawerState !== 'closed') finishClosingDrawer();
+    });
+
+    if ('IntersectionObserver' in window) {
+      var seen = 1 / Math.max(window.innerWidth, 1); // "at least a pixel of the panel is on screen"
+      new IntersectionObserver(function (entries) {
+        var entry = entries[entries.length - 1];
+        if (entry.intersectionRatio >= seen) {
+          if (drawerState === 'opening' && entry.intersectionRatio > 0.99) drawerState = 'open';
+        } else if (drawerState === 'open' || drawerState === 'closing') {
+          finishClosingDrawer(); // slid or swiped fully off-screen
+        }
+      }, { root: drawer, threshold: [seen, 0.5, 1] }).observe(drawerSheet);
+    }
+
+    // browsers without scroll-driven animations: tie the dim to the scroll by hand
+    if (!supports('animation-timeline: scroll()')) {
+      drawerScroller.addEventListener('scroll', function () {
+        drawer.style.setProperty('--drawer-backdrop', drawerScroller.scrollLeft / Math.max(drawerSheet.offsetWidth, 1));
+      });
+    }
+
+    if (needsSiblingIndex) {
+      all('.drawer__nav li', drawer).forEach(function (li, i) { li.style.setProperty('--sibling-index', i + 1); });
     }
   }
 

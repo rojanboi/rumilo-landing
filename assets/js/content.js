@@ -14,6 +14,7 @@ window.RUMILO_I18N = {
       why: 'Why Rumilo',
       contact: 'Contact',
       menu: 'Menu',
+      close: 'Close menu',
       label: 'Main navigation',
       lang: 'Language',
       skip: 'Skip to content'
@@ -188,6 +189,7 @@ window.RUMILO_I18N = {
       why: 'Dlaczego Rumilo',
       contact: 'Kontakt',
       menu: 'Menu',
+      close: 'Zamknij menu',
       label: 'Nawigacja główna',
       lang: 'Język',
       skip: 'Przejdź do treści'

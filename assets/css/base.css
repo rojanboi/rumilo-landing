@@ -283,8 +283,9 @@ p {
 }
 
 /* ---------- header ----------
-   One <nav> at every size. The link list is a native popover while the row
-   does not fit; main.js measures the row and adds .is-wide when it does. */
+   Wide screens show the links in the bar. When the row does not fit (main.js
+   measures it, there is no fixed breakpoint) the links move into the full-screen
+   menu below and the bar keeps the logo, the menu button and the call to action. */
 
 .site-header {
   position: sticky;
@@ -316,11 +317,38 @@ p {
 }
 
 .nav {
-  margin-inline-start: auto;
+  margin-inline: auto;
+}
+
+.site-menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 34px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-menu a {
+  display: block;
+  padding-block: 14px;
+  color: var(--silver);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.site-menu a:hover {
+  color: var(--white);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
 .menu-toggle {
-  anchor-name: --menu-button;
   display: inline-grid;
   min-block-size: 44px;
   min-inline-size: 44px;
@@ -331,192 +359,33 @@ p {
   place-items: center;
 }
 
-/* the icon repeats the logo mark: three slabs, white front and silver side */
 .menu-toggle__icon {
   width: 24px;
   height: 18px;
-  overflow: visible;
-}
-
-.menu-toggle__icon .f {
   fill: currentColor;
 }
 
-.menu-toggle__icon .s {
-  fill: var(--silver);
-}
-
-.menu-toggle__icon .bar {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .menu-toggle__icon .bar {
-    transition: transform 0.25s var(--ease-out), opacity 0.2s;
-  }
-}
-
-/* open menu: the outer slabs cross, the middle one leaves */
-.menu-toggle:has(+ .site-menu:popover-open) .bar--1 {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.menu-toggle:has(+ .site-menu:popover-open) .bar--2 {
-  opacity: 0;
-}
-
-.menu-toggle:has(+ .site-menu:popover-open) .bar--3 {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-.site-header.is-open .bar--1 {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.site-header.is-open .bar--2 {
-  opacity: 0;
-}
-
-.site-header.is-open .bar--3 {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-.site-menu {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.site-menu a {
-  display: block;
-  padding-block: 14px;
-  color: var(--white);
-  font-size: 1rem;
-  text-decoration: none;
-}
-
-.site-menu li + li {
-  border-block-start: 1px solid var(--line);
-}
-
-/* collapsed layout: the list opens as a popover under the Menu button */
-.site-menu[popover] {
-  position: fixed;
-  inset: auto;
-  /* browsers without anchor() keep this offset */
-  inset-block-start: 4.75rem;
-  inset-block-start: anchor(--menu-button bottom);
-  inset-inline-end: var(--gutter);
-  inline-size: min(80dvw, 22rem);
-  max-inline-size: calc(100dvw - 2rem);
-  block-size: fit-content;
-  max-block-size: calc(100dvh - 6rem);
-  margin-block-start: 0.5rem;
-  overflow: auto;
-  padding: 6px 20px 10px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--white);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .site-menu[popover] {
-    opacity: 0;
-    translate: 0 -8px;
-    transition: opacity 0.2s ease-out, translate 0.2s ease-out, display 0.2s, overlay 0.2s;
-    transition-behavior: allow-discrete;
-  }
-
-  .site-menu[popover]:popover-open {
-    opacity: 1;
-    translate: 0 0;
-  }
-
-  @starting-style {
-    .site-menu[popover]:popover-open {
-      opacity: 0;
-      translate: 0 -8px;
-    }
-  }
-}
-
-/* manual fallback where the Popover API is missing (main.js toggles .is-open) */
-.site-header.no-popover:not(.is-wide) .site-menu {
-  position: absolute;
-  inset-block-start: 100%;
-  inset-inline-end: var(--gutter);
-  display: none;
-  inline-size: min(80vw, 22rem);
-  padding: 6px 20px 10px;
-  border: 1px solid var(--line-strong);
-  background: var(--ink);
-}
-
-.site-header.no-popover.is-open:not(.is-wide) .site-menu {
-  display: block;
-}
-
-/* inline layout */
-.site-header.is-wide .menu-toggle {
-  display: none;
-}
-
-.site-header.is-wide .nav {
-  margin-inline: auto;
-}
-
-.site-header.is-wide .site-menu {
-  position: static;
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 2.4vw, 34px);
-  inline-size: auto;
-  max-inline-size: none;
-  block-size: auto;
-  max-block-size: none;
-  overflow: visible;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-
-.site-header.is-wide .site-menu li + li {
-  border: 0;
-}
-
-.site-header.is-wide .site-menu a {
-  color: var(--silver);
-  font-size: 0.8125rem;
-  transition: color 0.2s;
-}
-
-.site-header.is-wide .site-menu a:hover {
-  color: var(--white);
-}
-
-/* the language switch sits in the bar when the links are inline, in the menu when they are not */
+/* collapsed row: logo at the left edge, menu button and call to action at the right edge */
+.site-header:not(.is-wide) .nav,
 .site-header:not(.is-wide) .header-actions .lang {
   display: none;
 }
 
-.site-header.is-wide .site-menu__lang {
-  display: none;
+.site-header:not(.is-wide) .site-header__bar {
+  gap: 10px;
 }
 
-.site-menu__lang {
-  padding-block: 6px 0;
+.site-header:not(.is-wide) .header-actions {
+  gap: 10px;
+  margin-inline-start: auto;
+}
+
+.site-header.is-wide .menu-toggle {
+  display: none;
 }
 
 .site-header.is-measuring * {
   transition: none !important;
-}
-
-/* collapsed row: logo at the left edge, then the menu icon and the call to action at the right edge */
-.site-header:not(.is-wide) .site-header__bar {
-  gap: 10px;
 }
 
 @media (max-width: 400px) {
@@ -534,7 +403,8 @@ p {
     height: 18px;
   }
 
-  .site-header:not(.is-wide) .site-header__bar {
+  .site-header:not(.is-wide) .site-header__bar,
+  .site-header:not(.is-wide) .header-actions {
     gap: 6px;
   }
 
@@ -547,12 +417,6 @@ p {
     font-size: min(var(--btn-size), 0.75rem);
     letter-spacing: 0.02em;
   }
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
 }
 
 .lang {
@@ -583,6 +447,216 @@ p {
   color: var(--white);
   text-decoration: underline;
   text-underline-offset: 6px;
+}
+
+/* ---------- full-screen menu (narrow screens) ----------
+   A modal dialog that fills the screen. Inside it a horizontal scroller has two
+   snap stops: an empty one (menu closed, off to the right) and the panel itself
+   (menu open). Scrolling between them is the slide, so the panel can also be
+   swiped away with a finger. main.js starts the scroll and closes the dialog
+   once the panel has left the screen. */
+
+.drawer {
+  /* 0 = closed, 1 = open; driven by the scroll position (see below) */
+  --drawer-backdrop: 0;
+  --drawer-link: clamp(1.6rem, 1rem + 3.4vw, 2.6rem);
+
+  inset: 0;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: var(--white);
+}
+
+.drawer::backdrop {
+  background: #000;
+  opacity: calc(var(--drawer-backdrop) / 2);
+}
+
+.drawer__scroller {
+  position: relative;
+  display: grid;
+  grid-template-columns: 100% 100%;
+  overflow-x: scroll;
+  overscroll-behavior: none;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+
+.drawer__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .drawer__scroller {
+    scroll-behavior: smooth;
+  }
+}
+
+/* the empty first stop: with the scroller at its start the panel is off-screen */
+.drawer__scroller::before {
+  content: "";
+  scroll-snap-align: start;
+}
+
+.drawer__sheet {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  /* svh, so the height does not jump when a phone's address bar hides */
+  height: 100svh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  background: var(--black);
+  scroll-snap-align: end;
+}
+
+.drawer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: 72px;
+  padding-inline: var(--gutter);
+  border-bottom: 1px solid var(--line);
+}
+
+.drawer__top img {
+  width: auto;
+  height: 22px;
+}
+
+.drawer__close {
+  display: grid;
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--white);
+  cursor: pointer;
+  /* the cross sits on the same right line as the page content */
+  place-items: center end;
+}
+
+.drawer__close-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.drawer__nav {
+  padding: clamp(12px, 3vh, 32px) var(--gutter);
+}
+
+.drawer__nav a {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.5em;
+  border-bottom: 1px solid var(--line);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-weight: var(--display-weight);
+  font-size: var(--drawer-link);
+  line-height: 1.15;
+  letter-spacing: var(--display-tracking);
+  text-decoration: none;
+  text-transform: var(--display-case);
+}
+
+.drawer__nav a::after {
+  content: "→";
+  color: var(--graphite);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.6em;
+  transition: color 0.2s, translate 0.2s;
+}
+
+.drawer__nav a:hover::after,
+.drawer__nav a:focus-visible::after {
+  color: var(--sand);
+  translate: 4px 0;
+}
+
+.drawer__foot {
+  display: grid;
+  gap: 14px;
+  padding: 18px var(--gutter) max(24px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+}
+
+.drawer__foot .lang button {
+  font-size: 0.875rem;
+}
+
+.drawer__foot .lang button:first-child {
+  padding-inline-start: 0;
+  min-inline-size: 30px;
+  text-align: start;
+}
+
+.drawer__foot .btn {
+  min-block-size: 54px;
+  font-size: max(var(--btn-size), 0.9375rem);
+}
+
+@media (max-width: 400px) {
+  .drawer__top img {
+    height: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .drawer[open] .drawer__nav li {
+    animation: drawer-item 0.5s var(--ease-out) both;
+    animation-delay: calc(var(--sibling-index, 1) * 45ms + 0.14s);
+    animation-delay: calc(sibling-index() * 45ms + 0.14s);
+  }
+}
+
+@keyframes drawer-item {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* The dim behind the panel follows the slide. Kept inside @supports: elsewhere the
+   keyframes would still be parsed and leave the backdrop permanently dark. */
+@supports (animation-timeline: scroll()) {
+  .drawer {
+    timeline-scope: --drawer-fade;
+    animation: drawer-backdrop linear both;
+    animation-timeline: --drawer-fade;
+  }
+
+  .drawer__scroller {
+    scroll-timeline: --drawer-fade x;
+  }
+
+  /* registered as a number so it can be interpolated */
+  @property --drawer-backdrop {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+
+  @keyframes drawer-backdrop {
+    0% {
+      --drawer-backdrop: 0;
+    }
+
+    100% {
+      --drawer-backdrop: 1;
+    }
+  }
 }
 
 /* ---------- hero (IDeaS composition, Rumilo skin) ---------- */

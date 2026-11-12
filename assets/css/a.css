@@ -35,6 +35,19 @@ body.variant-a {
   --a-reco: 1.5rem;
 }
 
+/* links in the full-screen menu, sized per typeface */
+html:not([data-font]) .drawer {
+  --drawer-link: clamp(1.05rem, 0.6rem + 2.2vw, 1.5rem);
+}
+
+html[data-font="wide"] .drawer {
+  --drawer-link: clamp(1.25rem, 0.7rem + 2.8vw, 1.9rem);
+}
+
+html[data-font="serif"] .drawer {
+  --drawer-link: clamp(2.1rem, 1.2rem + 4.6vw, 3.2rem);
+}
+
 /* ---------- font versions ---------- */
 
 html[data-font] body.variant-a {
