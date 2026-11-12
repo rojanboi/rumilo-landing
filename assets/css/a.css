@@ -153,6 +153,15 @@ html:not([data-font]) .variant-a .tag {
   text-transform: uppercase;
 }
 
+/* original version only: wide capitals, so the two hero buttons get less tracking
+   and padding on phones to share one line */
+@media (max-width: 420px) {
+  html:not([data-font]) .variant-a .hero__cta .btn {
+    padding-inline: clamp(14px, 4.5vw, 20px);
+    letter-spacing: 0.08em;
+  }
+}
+
 @media (max-width: 1040px) {
   .variant-a .hero {
     grid-template-columns: minmax(0, 1fr);

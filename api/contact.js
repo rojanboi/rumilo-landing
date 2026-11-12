@@ -35,9 +35,9 @@ const PAGE_TEXT = {
     okTitle: 'Dziękujemy',
     ok: 'Zgłoszenie dotarło. Odezwiemy się wkrótce.',
     failTitle: 'Nie udało się wysłać zgłoszenia',
-    fail: 'Spróbuj ponownie za chwilę.',
-    invalid: 'Podaj imię, nazwę hotelu i sposób kontaktu oraz zaznacz zgodę.',
-    back: 'Wróć na stronę'
+    fail: 'Prosimy spróbować ponownie za chwilę.',
+    invalid: 'Wymagane: imię, nazwa hotelu, sposób kontaktu i zaznaczona zgoda.',
+    back: 'Powrót na stronę'
   },
   en: {
     okTitle: 'Thank you',

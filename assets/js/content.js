@@ -189,15 +189,15 @@ window.RUMILO_I18N = {
       why: 'Dlaczego Rumilo',
       contact: 'Kontakt',
       menu: 'Menu',
-      close: 'Zamknij menu',
+      close: 'Zamknięcie menu',
       label: 'Nawigacja główna',
       lang: 'Język',
-      skip: 'Przejdź do treści'
+      skip: 'Przejście do treści'
     },
     cta: {
-      call: 'Umów rozmowę',
+      call: 'Porozmawiajmy',
       how: 'Jak to działa',
-      modules: 'Poznaj moduły'
+      modules: 'Przegląd modułów'
     },
     hero: {
       title: 'Większy zysk dla',
@@ -213,8 +213,8 @@ window.RUMILO_I18N = {
       tipText: 'by wpłynąć na popyt'
     },
     motion: {
-      pause: 'Wstrzymaj animację',
-      play: 'Włącz animację'
+      pause: 'Wstrzymanie animacji',
+      play: 'Włączenie animacji'
     },
     ticker: {
       label: 'Sygnały rynkowe',
@@ -245,7 +245,7 @@ window.RUMILO_I18N = {
     product: {
       title: 'Jeden system do cen, prognoz i planowania',
       p1: 'Rumilo daje hotelom bez działu revenue narzędzia, z których korzystają duże sieci. Analizuje dane o rezerwacjach, prognozuje popyt na każdy przyszły termin i podpowiada cenę, która przyniesie najwyższy przychód.',
-      p2: 'Kontrola zostaje po Twojej stronie: każda rekomendacja ma uzasadnienie, a o publikacji ceny decydujesz Ty.'
+      p2: 'Kontrola zostaje po stronie hotelu: każda rekomendacja ma uzasadnienie, a o publikacji ceny decyduje człowiek.'
     },
     screen: {
       title: 'Dziś',
@@ -268,16 +268,16 @@ window.RUMILO_I18N = {
     audience: {
       title: 'Dla hoteli bez działu revenue',
       a1: { t: 'Hotele niezależne', d: 'Jeden obiekt, jeden właściciel, sto decyzji dziennie. Rumilo zdejmuje z tej listy ceny.' },
-      a2: { t: 'Hotele butikowe', d: 'Mało pokoi, wysoka wartość. Wyceń każdy typ pokoju tak, jak naprawdę wart jest dany termin.' },
-      a3: { t: 'Aparthotele i długie pobyty', d: 'Wyważ krótkie i długie pobyty, żeby kalendarz zapełniał się bez luk.' },
-      a4: { t: 'Hostele', d: 'Wyceniaj łóżka i pokoje prywatne według popytu, noc po nocy.' }
+      a2: { t: 'Hotele butikowe', d: 'Mało pokoi, wysoka wartość. Każdy typ pokoju wyceniony tak, jak naprawdę wart jest dany termin.' },
+      a3: { t: 'Aparthotele i długie pobyty', d: 'Równowaga krótkich i długich pobytów, dzięki której kalendarz zapełnia się bez luk.' },
+      a4: { t: 'Hostele', d: 'Łóżka i pokoje prywatne wyceniane według popytu, noc po nocy.' }
     },
     why: {
       title: 'Co wyróżnia Rumilo',
       w1: {
-        t: 'Automatyzacja, którą rozumiesz',
+        t: 'Zrozumiała automatyzacja',
         b1: 'Każda rekomendacja pokazuje swoje powody: popyt, tempo rezerwacji, sezon.',
-        b2: 'Akceptujesz, korygujesz albo nadpisujesz jednym kliknięciem, w granicach, które ustalasz.',
+        b2: 'Akceptacja, korekta albo nadpisanie jednym kliknięciem, w granicach ustalonych przez hotel.',
         b3: 'Mniej rutyny w arkuszach, więcej czasu dla gości i strategii.'
       },
       w2: {
@@ -301,8 +301,8 @@ window.RUMILO_I18N = {
       r1: 'Prognoza popytu: wysoki',
       r2: 'Tempo rezerwacji powyżej ubiegłego roku',
       r3: 'Weekend w wysokim sezonie',
-      accept: 'Akceptuj',
-      adjust: 'Skoryguj'
+      accept: 'Akceptacja',
+      adjust: 'Korekta'
     },
     plan: {
       title: 'Plan a wykonanie',
@@ -323,27 +323,27 @@ window.RUMILO_I18N = {
     },
     decide: {
       title: 'Każda cena ma swoje uzasadnienie',
-      p: 'Rumilo pokazuje, dlaczego rekomenduje daną cenę: prognozowany popyt, tempo rezerwacji, sezon. Akceptujesz ją, korygujesz albo ustawiasz własną, w granicach, które określasz.'
+      p: 'Rumilo pokazuje, dlaczego rekomenduje daną cenę: prognozowany popyt, tempo rezerwacji, sezon. Cenę można zaakceptować, skorygować albo ustawić własną, w granicach określonych przez hotel.'
     },
     band: {
-      title: 'Zobacz, ile wart jest Twój kalendarz'
+      title: 'Ile wart jest kalendarz hotelu?'
     },
     contact: {
-      title: 'Umów rozmowę',
-      lead: 'Krótka rozmowa: my poznajemy Twój hotel, Ty poznajesz produkt.',
+      title: 'Porozmawiajmy',
+      lead: 'Krótka rozmowa: poznajemy hotel i pokazujemy produkt.',
       name: 'Imię i nazwisko',
       hotel: 'Hotel',
       reach: 'E-mail lub telefon',
       time: 'Dogodny termin (opcjonalnie)',
       consent: 'Zgadzam się na kontakt w sprawie tego zgłoszenia.',
-      submit: 'Wyślij prośbę',
+      submit: 'Wysyłam prośbę',
       subject: 'Prośba o rozmowę',
       required: 'To pole jest wymagane.',
       errorIcon: 'Błąd',
       sending: 'Wysyłanie…',
       sent: 'Dziękujemy. Zgłoszenie dotarło, odezwiemy się wkrótce.',
-      fail: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie za chwilę.',
-      err: 'Podaj imię, nazwę hotelu i sposób kontaktu oraz zaznacz zgodę.'
+      fail: 'Nie udało się wysłać zgłoszenia. Prosimy spróbować ponownie za chwilę.',
+      err: 'Wymagane: imię, nazwa hotelu, sposób kontaktu i zaznaczona zgoda.'
     },
     footer: {
       tagline: 'System revenue management dla hoteli',
