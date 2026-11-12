@@ -21,7 +21,7 @@ window.RUMILO_I18N = {
     },
     cta: {
       call: 'Book a call',
-      how: 'See how it works',
+      how: 'How it works',
       modules: 'Explore the modules'
     },
     hero: {
@@ -196,7 +196,7 @@ window.RUMILO_I18N = {
     },
     cta: {
       call: 'Umów rozmowę',
-      how: 'Zobacz, jak to działa',
+      how: 'Jak to działa',
       modules: 'Poznaj moduły'
     },
     hero: {

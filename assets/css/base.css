@@ -417,6 +417,15 @@ p {
     font-size: min(var(--btn-size), 0.75rem);
     letter-spacing: 0.02em;
   }
+
+  /* keeps the two hero buttons on one line on the narrowest phones */
+  .hero__cta {
+    gap: 8px;
+  }
+
+  .hero__cta .btn {
+    padding-inline: 16px;
+  }
 }
 
 .lang {
