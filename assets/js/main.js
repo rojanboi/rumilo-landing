@@ -66,10 +66,12 @@
     var opts = { timeZone: 'UTC' };
     if (kind === 'md') { opts.day = 'numeric'; opts.month = 'short'; }
     else if (kind === 'wmd') { opts.weekday = 'short'; opts.day = 'numeric'; opts.month = 'short'; }
+    else if (kind === 'full') { opts.weekday = 'long'; opts.day = 'numeric'; opts.month = 'long'; }
     else if (kind === 'month') { opts.month = 'long'; }
     else if (kind === 'mon') { opts.month = 'short'; }
     else { opts.day = 'numeric'; opts.month = 'long'; }
-    var s = new Intl.DateTimeFormat(LOCALE[lang], opts).format(d).replace(',', '');
+    var s = new Intl.DateTimeFormat(LOCALE[lang], opts).format(d);
+    if (kind !== 'full') s = s.replace(',', ''); // the long form keeps its comma
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 

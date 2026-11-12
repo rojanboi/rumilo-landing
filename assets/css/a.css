@@ -400,111 +400,113 @@ html[data-font="grotesk"] .a-h2 {
   }
 }
 
-/* ---------- events (presentation slide 01): three cards, event → price → gain ---------- */
+/* ---------- events (presentation slide 01): room rate before / after the announcement ---------- */
 
-.a-event {
-  display: grid;
-  gap: 12px;
+.a-ba__head {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.a-event__card {
-  padding: 22px 24px;
-  border: 1px solid var(--line);
+.a-ba__icon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  color: var(--sand);
+}
+
+.a-ba__name {
+  font-size: var(--a-sub);
+  letter-spacing: var(--a-sub-tracking);
+  line-height: 1.2;
+}
+
+.a-ba__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.a-ba__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  justify-content: space-between;
+  min-height: 180px;
+  padding: clamp(18px, 2.4vw, 26px);
   border-radius: var(--radius);
   background: var(--ink);
 }
 
-.a-event__tag {
-  display: inline-flex;
-  gap: 6px;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 5px 10px;
-  border-radius: var(--radius-xs);
+.a-ba__cell p {
+  color: var(--silver);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.a-ba__cell b {
+  color: #8a8a8a;
+  font-weight: var(--display-weight);
+  font-size: clamp(2.2rem, 1.5rem + 1.6vw, 3.4rem);
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+.a-ba__cell--after {
   background: var(--sand);
   color: var(--black);
-  font-weight: 600;
-  font-size: 0.75rem;
-  line-height: 1.2;
 }
 
-.a-event__tag svg {
-  width: 12px;
-  height: 12px;
+.a-ba__cell--after p {
+  color: rgba(21, 21, 21, 0.72);
 }
 
-.a-event__name {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: var(--display-weight);
-  font-size: var(--a-sub);
-  letter-spacing: var(--a-sub-tracking);
-  line-height: 1.25;
-}
-
-.a-event__price {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 22px;
-  align-items: center;
-}
-
-.a-event__price :is(s, b) {
-  font-weight: var(--display-weight);
-  font-size: clamp(1.9rem, 1.3rem + 1.6vw, 2.6rem);
-  line-height: 1;
-  white-space: nowrap;
-  text-transform: none;
-}
-
-.a-event__price s {
-  color: var(--graphite);
-  text-decoration-thickness: 2px;
-}
-
-.a-event__arrow {
-  color: var(--silver);
-  font-size: 1.5rem;
-}
-
-.a-event__gain {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 16px;
-  align-items: center;
-  justify-content: space-between;
-  border-color: var(--paper);
-  background: var(--paper);
+.a-ba__cell--after b {
   color: var(--black);
-  font-size: 0.875rem;
 }
 
-.a-event__gain b {
+.a-ba__gain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  align-items: baseline;
+  margin-top: 24px;
+}
+
+.a-ba__gain b {
   font-weight: var(--display-weight);
-  font-size: clamp(1.5rem, 1.1rem + 1vw, 2rem);
+  font-size: clamp(2rem, 1.4rem + 1.2vw, 2.75rem);
   line-height: 1;
   white-space: nowrap;
   text-transform: none;
 }
 
-.a-event .demo-note {
-  margin-top: 0;
+.a-ba__gain span {
+  color: var(--silver);
+  font-size: 1.0625rem;
 }
 
-/* the cards arrive one after another when the block scrolls into view */
+/* before, after, then the gain: one after another when the block scrolls into view */
 @media (prefers-reduced-motion: no-preference) {
-  .hv-anim .a-event.fx .a-event__card {
+  .hv-anim .a-ba.fx :is(.a-ba__cell, .a-ba__gain) {
     transition: opacity 0.5s ease-out, transform 0.6s var(--ease-out);
   }
 
-  .hv-anim .a-event.fx .a-event__card:nth-child(2) { transition-delay: 0.45s; }
-  .hv-anim .a-event.fx .a-event__card:nth-child(3) { transition-delay: 0.9s; }
+  .hv-anim .a-ba.fx .a-ba__cell--after { transition-delay: 0.45s; }
+  .hv-anim .a-ba.fx .a-ba__gain { transition-delay: 0.9s; }
 
-  .hv-anim .a-event.fx:not(.is-live) .a-event__card {
+  .hv-anim .a-ba.fx:not(.is-live) :is(.a-ba__cell, .a-ba__gain) {
     opacity: 0;
     transform: translateY(14px);
     transition: none;
   }
+}
+
+/* the chart of the product screen runs edge to edge of the card */
+.a-screen .ui-chart svg {
+  display: block;
 }
 
 /* ---------- product (presentation slide 02): data sources → the right price ---------- */
@@ -580,12 +582,13 @@ html[data-font="grotesk"] .a-h2 {
   background: var(--ink);
 }
 
-.a-together__n {
+/* line icons in the same stroke style as the hero tags, in place of numbers */
+.a-together__icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
   margin-bottom: auto;
   color: var(--sand);
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 1;
 }
 
 .a-together__t {
@@ -606,8 +609,8 @@ html[data-font="grotesk"] .a-h2 {
   color: var(--black);
 }
 
-.a-together li.is-key .a-together__n {
-  color: rgba(21, 21, 21, 0.6);
+.a-together li.is-key .a-together__icon {
+  color: var(--black);
 }
 
 .a-together li.is-key p {
@@ -919,6 +922,140 @@ html[data-font="serif"] .a-aud__n {
   .a-why__panel {
     position: static;
     max-width: 480px;
+  }
+}
+
+/* ---------- why: the recommendation on a price scale ---------- */
+
+.a-why__panel .a-sc {
+  padding: clamp(22px, 2.6vw, 30px);
+  font-size: 1rem;
+}
+
+.a-sc__title {
+  font-size: var(--a-sub);
+  letter-spacing: var(--a-sub-tracking);
+  line-height: 1.2;
+}
+
+.a-sc__scale {
+  position: relative;
+  margin-top: 26px;
+  padding-block: 60px 40px;
+}
+
+.a-sc__new {
+  position: absolute;
+  top: 0;
+  left: var(--new);
+  font-weight: var(--display-weight);
+  font-size: clamp(2.2rem, 1.6rem + 1.2vw, 2.9rem);
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: none;
+  transform: translateX(-50%);
+}
+
+.a-sc__old {
+  position: absolute;
+  bottom: 0;
+  left: var(--old);
+  color: var(--graphite);
+  font-size: 1rem;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.a-sc__track {
+  position: relative;
+  height: 10px;
+  border-radius: 99px;
+  background: var(--ink-2);
+}
+
+.a-sc__fill {
+  position: absolute;
+  inset-block: 0;
+  left: var(--old);
+  width: calc(var(--new) - var(--old));
+  border-radius: 99px;
+  background: var(--sand);
+}
+
+.a-sc__dot {
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.a-sc__dot--old {
+  left: var(--old);
+  border: 3px solid var(--graphite);
+  background: var(--ink);
+}
+
+.a-sc__dot--new {
+  left: var(--new);
+  background: var(--white);
+  box-shadow: 0 0 0 6px rgba(201, 183, 156, 0.3);
+}
+
+.a-sc__reasons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.a-sc__reasons li {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+
+.a-sc__reasons svg {
+  width: 28px;
+  height: 28px;
+  color: var(--sand);
+}
+
+/* three equal buttons across the full width of the card */
+.a-sc__actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.a-sc__actions span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.a-sc__actions .is-solid {
+  border-color: var(--white);
+  background: var(--white);
+  color: var(--black);
+}
+
+/* the narrowest phones: "Odrzucenie" still fits a third of the card */
+@media (max-width: 380px) {
+  .a-sc__actions span {
+    padding: 0 4px;
+    font-size: 0.8125rem;
   }
 }
 

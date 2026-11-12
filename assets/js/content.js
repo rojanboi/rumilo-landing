@@ -66,13 +66,13 @@ window.RUMILO_I18N = {
     events: {
       title: 'Concert announced. Rates updated before anyone books cheap.',
       p: 'Concerts, trade fairs, matches and long weekends lift demand long before the first booking. Roomila tracks events around your hotel and recommends a new rate right away, before the cheapest rooms are gone.',
-      tag: 'New event',
-      name: 'Concert, Tauron Arena Kraków',
+      name: 'Concert at Tauron Arena',
+      before: 'Room rate before the announcement',
+      after: 'Room rate after the announcement',
       priceOld: '€70',
       priceNew: '€165',
-      gainLabel: '10 rooms, one night',
       gain: '+€950',
-      note: 'Example'
+      gainLabel: 'with 10 rooms for one night'
     },
     facts: {
       title: 'Roomila at a glance',
@@ -161,7 +161,12 @@ window.RUMILO_I18N = {
       r2: 'Booking pace ahead of last year',
       r3: 'Weekend in high season',
       accept: 'Accept',
-      adjust: 'Adjust'
+      adjust: 'Adjust',
+      reject: 'Reject',
+      now: 'now',
+      s1: 'High demand',
+      s2: 'Faster bookings',
+      s3: 'Peak season'
     },
     plan: {
       title: 'Plan vs actual',
@@ -277,13 +282,13 @@ window.RUMILO_I18N = {
     events: {
       title: 'Koncert ogłoszony. Ceny zmienione, zanim ktoś zarezerwuje tanio.',
       p: 'Koncerty, targi, mecze i długie weekendy podnoszą popyt na długo przed pierwszą rezerwacją. Roomila śledzi wydarzenia w okolicy hotelu i od razu podpowiada nową cenę, zanim najtańsze pokoje znikną.',
-      tag: 'Nowe wydarzenie',
-      name: 'Koncert, Tauron Arena Kraków',
+      name: 'Koncert w Tauron Arenie',
+      before: 'Cena pokoju przed ogłoszeniem',
+      after: 'Cena pokoju po ogłoszeniu',
       priceOld: '300 zł',
       priceNew: '700 zł',
-      gainLabel: '10 pokoi, jedna noc',
       gain: '+4000 zł',
-      note: 'Przykład'
+      gainLabel: 'przy 10 pokojach w jedną noc'
     },
     facts: {
       title: 'Roomila w skrócie',
@@ -372,7 +377,12 @@ window.RUMILO_I18N = {
       r2: 'Tempo rezerwacji powyżej ubiegłego roku',
       r3: 'Weekend w wysokim sezonie',
       accept: 'Akceptacja',
-      adjust: 'Korekta'
+      adjust: 'Korekta',
+      reject: 'Odrzucenie',
+      now: 'teraz',
+      s1: 'Wysoki popyt',
+      s2: 'Szybsze rezerwacje',
+      s3: 'Szczyt sezonu'
     },
     plan: {
       title: 'Plan a wykonanie',
