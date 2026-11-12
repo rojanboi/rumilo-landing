@@ -1,0 +1,9 @@
+{
+  "name": "rumilo-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rumilo landing page: static site plus the call-request function in api/contact.js",
+  "dependencies": {
+    "nodemailer": "10.3.1"
+  }
+}
