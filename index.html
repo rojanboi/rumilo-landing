@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rumilo — system revenue management dla hoteli</title>
-<meta name="description" content="Dynamiczne ceny, prognoza popytu, analityka i budżetowanie dla hoteli niezależnych, butikowych, aparthoteli i hosteli.">
+<title>Roomila — stoimy na straży cen hotelu</title>
+<meta name="description" content="Roomila śledzi wydarzenia i popyt i podpowiada właściwą cenę na każdą noc. Dla hoteli niezależnych, butikowych, aparthoteli i hosteli.">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#151515">
-<link rel="icon" href="assets/img/logo/rumilo-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/logo/roomila-favicon.svg" type="image/svg+xml">
 <script>
 /* Runs before first paint: font version (Space Grotesk by default; ?font=archivo|wide|serif
    switches), the saved motion preference, and the "closed" start state of the animated hero. */
@@ -39,13 +39,13 @@
 
 <header class="site-header" data-header>
   <div class="wrap site-header__bar" data-header-bar>
-    <a class="brand" href="#top"><img src="assets/img/logo/rumilo-horizontal-white.svg" alt="Rumilo" width="123" height="22"></a>
+    <a class="brand" href="#top"><img src="assets/img/logo/roomila-horizontal-white.svg" alt="Roomila" width="139" height="22"></a>
     <nav class="nav" aria-label="Nawigacja główna" data-i18n-attr="aria-label:nav.label">
       <ul class="site-menu" data-menu>
+        <li><a href="#events" data-i18n="nav.events">Wydarzenia</a></li>
         <li><a href="#product" data-i18n="nav.product">Produkt</a></li>
-        <li><a href="#modules" data-i18n="nav.modules">Moduły</a></li>
         <li><a href="#audience" data-i18n="nav.audience">Dla kogo</a></li>
-        <li><a href="#why" data-i18n="nav.why">Dlaczego Rumilo</a></li>
+        <li><a href="#why" data-i18n="nav.why">Dlaczego Roomila</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
     </nav>
@@ -63,15 +63,15 @@
   <div class="drawer__scroller" data-drawer-scroller>
     <div class="drawer__sheet" data-drawer-sheet>
       <div class="drawer__top">
-        <img src="assets/img/logo/rumilo-horizontal-white.svg" alt="Rumilo" width="123" height="22">
+        <img src="assets/img/logo/roomila-horizontal-white.svg" alt="Roomila" width="139" height="22">
         <button type="button" class="drawer__close" data-drawer-close autofocus aria-label="Zamknięcie menu" data-i18n-attr="aria-label:nav.close"><svg class="drawer__close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l16 16M20 4L4 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></svg></button>
       </div>
       <nav class="drawer__nav" aria-label="Nawigacja główna" data-i18n-attr="aria-label:nav.label">
         <ul>
+          <li><a href="#events" data-i18n="nav.events">Wydarzenia</a></li>
           <li><a href="#product" data-i18n="nav.product">Produkt</a></li>
-          <li><a href="#modules" data-i18n="nav.modules">Moduły</a></li>
           <li><a href="#audience" data-i18n="nav.audience">Dla kogo</a></li>
-          <li><a href="#why" data-i18n="nav.why">Dlaczego Rumilo</a></li>
+          <li><a href="#why" data-i18n="nav.why">Dlaczego Roomila</a></li>
           <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
         </ul>
       </nav>
@@ -85,18 +85,18 @@
 
 <main id="main">
 
-  <!-- HERO: same composition as the IDeaS hero, Rumilo skin -->
+  <!-- HERO: same composition as the IDeaS hero, Roomila skin -->
   <section class="hero wrap" id="top">
     <div class="hero__copy">
       <h1 class="hero__title display">
-        <span data-i18n="hero.title">Większy zysk dla</span>
+        <span data-i18n="hero.title">Stoimy na straży cen</span>
         <span class="rotator" aria-hidden="true"><span data-rotator>hoteli niezależnych</span></span>
         <span class="visually-hidden" data-i18n="hero.titleSr">hoteli niezależnych i butikowych, aparthoteli i hosteli</span>
       </h1>
-      <p class="hero__lead" data-i18n="hero.lead">Dynamiczne ceny, prognoza popytu i planowanie przychodów oparte na AI. Dla hoteli, które działają bez własnego działu revenue.</p>
+      <p class="hero__lead" data-i18n="hero.lead">Pilnujemy, żeby żaden pokój nie poszedł przypadkiem za pół darmo. Roomila śledzi wydarzenia i popyt, prognozuje obłożenie i podpowiada cenę, zanim termin się wyprzeda.</p>
       <div class="hero__cta">
         <a class="btn btn--solid" href="#contact" data-cta-call data-i18n="cta.call">Porozmawiajmy</a>
-        <a class="btn btn--ghost" href="#modules" data-i18n="cta.how">Jak to działa</a>
+        <a class="btn btn--ghost" href="#events" data-i18n="cta.how">Jak to działa</a>
       </div>
     </div>
 
@@ -133,7 +133,7 @@
           <div class="panel hv-fold hv-cells" data-hv="i-cal">
             <div class="cal hv-flag" data-hv="i-flag" data-cal="2026-07" data-levels="1,1,3,4,2,0,1,1,2,3,4,2,1,0,1,2,3,3,3,1,1,2,2,4,4,3,1,1,2,2,4" data-flag="18"></div>
           </div>
-          <div class="cal-tip hv-pop" data-hv="i-tip"><strong data-i18n="hero.tipTitle">Nowa okazja</strong><span data-i18n="hero.tipText">by wpłynąć na popyt</span></div>
+          <div class="cal-tip hv-pop" data-hv="i-tip"><strong data-i18n="hero.tipTitle">Nowe wydarzenie</strong><span data-i18n="hero.tipText">popyt rośnie</span></div>
         </div>
 
         <div class="hv hv--occupancy">
@@ -172,21 +172,50 @@
 
   <!-- Market signals ticker (demo data, items come from assets/js/content.js) -->
   <div class="ticker" data-ticker>
-    <p class="ticker__label"><i aria-hidden="true"></i><span data-i18n="ticker.label">Sygnały rynkowe</span><span class="ticker__demo" data-i18n="ticker.demo">demo</span></p>
+    <p class="ticker__label"><i aria-hidden="true"></i><span data-i18n="ticker.label">Sygnały rynkowe</span><span class="ticker__demo" data-i18n="ticker.demo">przykładowe</span></p>
     <div class="ticker__track" role="group" tabindex="0" aria-label="Sygnały rynkowe, które śledzi system (dane przykładowe)" data-i18n-attr="aria-label:ticker.aria" data-ticker-track></div>
   </div>
 
+  <!-- EVENTS (presentation slide 01): an announced event moves the price before anyone books cheap -->
+  <section class="a-section wrap a-ruled" id="events" aria-labelledby="events-h">
+    <div class="a-product">
+      <div class="reveal">
+        <h2 id="events-h" class="display a-h2" data-i18n="events.title">Koncert ogłoszony. Ceny zmienione, zanim ktoś zarezerwuje tanio.</h2>
+        <div class="a-step">
+          <p data-i18n="events.p">Koncerty, targi, mecze i długie weekendy podnoszą popyt na długo przed pierwszą rezerwacją. Roomila śledzi wydarzenia w okolicy hotelu i od razu podpowiada nową cenę, zanim najtańsze pokoje znikną.</p>
+        </div>
+      </div>
+
+      <div class="a-event fx" aria-hidden="true">
+        <div class="a-event__card">
+          <span class="a-event__tag"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 2.5l1.6 4.4L14 8.5l-4.4 1.6L8 14.5l-1.6-4.4L2 8.5l4.4-1.6L8 2.5zM15.5 11l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z"/></svg><span data-i18n="events.tag">Nowe wydarzenie</span></span>
+          <span class="a-event__name" data-i18n="events.name">Koncert, Tauron Arena Kraków</span>
+        </div>
+        <div class="a-event__card a-event__price">
+          <s class="display" data-i18n="events.priceOld">300 zł</s>
+          <span class="a-event__arrow">→</span>
+          <b class="display" data-i18n="events.priceNew">700 zł</b>
+        </div>
+        <div class="a-event__card a-event__gain">
+          <span data-i18n="events.gainLabel">10 pokoi, jedna noc</span>
+          <b class="display" data-i18n="events.gain">+4000 zł</b>
+        </div>
+        <p class="demo-note" data-i18n="events.note">Przykład</p>
+      </div>
+    </div>
+  </section>
+
   <!-- FACTS -->
   <section class="a-facts wrap" aria-labelledby="facts-h">
-    <h2 id="facts-h" class="visually-hidden" data-i18n="facts.title">Rumilo w skrócie</h2>
+    <h2 id="facts-h" class="visually-hidden" data-i18n="facts.title">Roomila w skrócie</h2>
     <dl class="a-facts__grid">
       <div class="fact fact--xl reveal">
         <dt><span class="fact__n display">365</span></dt>
         <dd><span class="fact__u" data-i18n="facts.a.unit">dni</span> <span data-i18n="facts.a.label">cen zaplanowanych z wyprzedzeniem</span></dd>
       </div>
       <div class="fact reveal">
-        <dt><span class="fact__n display">4</span> <span class="fact__u" data-i18n="facts.b.unit">moduły</span></dt>
-        <dd data-i18n="facts.b.label">w jednym systemie</dd>
+        <dt><span class="fact__n display">6</span> <span class="fact__u" data-i18n="facts.f.unit">źródeł danych</span></dt>
+        <dd data-i18n="facts.f.label">w każdej cenie</dd>
       </div>
       <div class="fact reveal">
         <dt><span class="fact__n display">24/7</span></dt>
@@ -203,21 +232,31 @@
     </dl>
   </section>
 
-  <!-- 01 PRODUCT -->
+  <!-- PRODUCT (presentation slide 02): data sources in, the right price for every night out -->
   <section class="a-section wrap a-ruled" id="product" aria-labelledby="product-h">
     <div class="a-product">
       <div class="reveal">
-        <h2 id="product-h" class="display a-h2" data-i18n="product.title">Jeden system do cen, prognoz i planowania</h2>
+        <h2 id="product-h" class="display a-h2" data-i18n="product.title">Dane zamiast pustych pokoi</h2>
         <div class="a-step">
-          <p data-i18n="product.p1">Rumilo daje hotelom bez działu revenue narzędzia, z których korzystają duże sieci. Analizuje dane o rezerwacjach, prognozuje popyt na każdy przyszły termin i podpowiada cenę, która przyniesie najwyższy przychód.</p>
+          <p data-i18n="product.p1">Roomila łączy sześć źródeł danych i na ich podstawie wylicza cenę dla każdej nocy i każdego typu pokoju. Dla hoteli bez specjalisty od cen: bez arkuszy i bez zgadywania.</p>
+          <div class="a-data">
+            <ul class="a-data__chips" aria-label="Źródła danych" data-i18n-attr="aria-label:data.label">
+              <li class="is-key" data-i18n="data.s1">Wydarzenia</li>
+              <li data-i18n="data.s2">Dane historyczne</li>
+              <li data-i18n="data.s3">Ceny konkurencji</li>
+              <li data-i18n="data.s4">Ruch na portalach</li>
+              <li data-i18n="data.s5">Poziom popytu</li>
+              <li data-i18n="data.s6">Sezon</li>
+            </ul>
+            <p class="a-data__result display"><svg viewBox="0 0 760 700" aria-hidden="true" focusable="false"><polygon points="0,180 480,0 480,132 0,312" fill="#fff"/><polygon points="0,374 480,280 480,412 0,506" fill="#fff"/><polygon points="0,568 480,568 480,700 0,700" fill="#fff"/><polygon points="480,0 760,140 760,272 480,132" fill="#a3a3a3"/><polygon points="480,280 760,360 760,492 480,412" fill="#a3a3a3"/><polygon points="480,568 760,568 760,700 480,700" fill="#a3a3a3"/></svg><span data-i18n="data.result">Właściwa cena na każdą noc</span></p>
+          </div>
           <p data-i18n="product.p2">Kontrola zostaje po stronie hotelu: każda rekomendacja ma uzasadnienie, a o publikacji ceny decyduje człowiek.</p>
-          <a class="a-link" href="#modules" data-i18n="cta.modules">Przegląd modułów</a>
         </div>
       </div>
 
       <div class="ui a-screen reveal fx" aria-hidden="true">
         <div class="ui__head">
-          <span class="ui__title">Rumilo · <span data-i18n="screen.title">Dziś</span></span>
+          <span class="ui__title">Roomila · <span data-i18n="screen.title">Dziś</span></span>
           <span class="ui__meta" data-date="2026-08-14" data-fmt="wmd">Fri 14 Aug</span>
         </div>
         <div class="ui-kpis">
@@ -227,12 +266,12 @@
             <div class="kpi__delta"><b>▲ 4%</b> <span data-i18n="screen.vs">r/r</span></div>
           </div>
           <div class="kpi">
-            <div class="kpi__label" data-i18n="screen.adr">ADR</div>
+            <div class="kpi__label" data-i18n="screen.adr">Średnia cena</div>
             <div class="kpi__value display" data-price="142">€142</div>
             <div class="kpi__delta"><b>▲ 6%</b> <span data-i18n="screen.vs">r/r</span></div>
           </div>
           <div class="kpi">
-            <div class="kpi__label" data-i18n="screen.revpar">RevPAR</div>
+            <div class="kpi__label" data-i18n="screen.revpar">Przychód na pokój</div>
             <div class="kpi__value display" data-price="111">€111</div>
             <div class="kpi__delta"><b>▲ 9%</b> <span data-i18n="screen.vs">r/r</span></div>
           </div>
@@ -259,101 +298,15 @@
     </div>
   </section>
 
-  <!-- 02 MODULES: numbered list, preview on hover -->
-  <section class="a-modules" id="modules" aria-labelledby="modules-h">
-    <div class="a-section wrap">
-      <div>
-        <h2 id="modules-h" class="display a-h2" data-i18n="modules.title">Cztery moduły, jedna codzienna rutyna</h2>
-        <ol class="a-list">
-          <li class="a-row">
-            <span class="a-row__n display">01</span>
-            <div class="a-row__text">
-              <h3 class="display a-row__t" data-i18n="modules.m1.t">Dynamiczne ceny</h3>
-              <p data-i18n="modules.m1.d">Rekomendacje cen dla każdego terminu i typu pokoju, aktualizowane wraz ze zmianą popytu.</p>
-            </div>
-            <div class="a-row__preview ui fx" aria-hidden="true">
-              <div class="ui__head"><span class="ui__title" data-i18n="rates.title">Rekomendacje cen</span><span class="ui__meta" data-i18n="reco.room">Pokój dwuosobowy</span></div>
-              <div class="ui-rates">
-                <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-14" data-fmt="wmd">Fri 14 Aug</span><span class="ui-rates__old" data-price="142">€142</span><span class="ui-rates__new" data-price="158">€158</span><span class="delta delta--up">+11%</span></div>
-                <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-15" data-fmt="wmd">Sat 15 Aug</span><span class="ui-rates__old" data-price="149">€149</span><span class="ui-rates__new" data-price="171">€171</span><span class="delta delta--up">+15%</span></div>
-                <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-16" data-fmt="wmd">Sun 16 Aug</span><span class="ui-rates__old" data-price="128">€128</span><span class="ui-rates__new" data-price="121">€121</span><span class="delta">−5%</span></div>
-              </div>
-              <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
-            </div>
-          </li>
-          <li class="a-row">
-            <span class="a-row__n display">02</span>
-            <div class="a-row__text">
-              <h3 class="display a-row__t" data-i18n="modules.m2.t">Prognoza popytu</h3>
-              <p data-i18n="modules.m2.d">Prognoza obłożenia i popytu na kolejne miesiące z oznaczeniem terminów o wysokim i niskim popycie.</p>
-            </div>
-            <div class="a-row__preview ui fx" aria-hidden="true">
-              <div class="cal a-cal" data-cal="2026-08" data-levels="4,2,0,1,1,2,3,4,2,1,1,2,2,4,4,3,1,0,1,1,3,4,2,0,0,1,1,3,3,2,0" data-flag="24,25"></div>
-              <div class="legend">
-                <span><i class="is-box is-high"></i><span data-i18n="demand.high">Wysoki popyt</span></span>
-                <span><i class="is-box is-low"></i><span data-i18n="demand.low">Niski popyt</span></span>
-                <span><i class="is-box is-flag"></i><span data-i18n="demand.flag">Okazja</span></span>
-              </div>
-              <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
-            </div>
-          </li>
-          <li class="a-row">
-            <span class="a-row__n display">03</span>
-            <div class="a-row__text">
-              <h3 class="display a-row__t" data-i18n="modules.m3.t">Pulpity i analityka</h3>
-              <p data-i18n="modules.m3.d">RevPAR, ADR, obłożenie i pickup na jednym ekranie, w porównaniu z ubiegłym rokiem.</p>
-            </div>
-            <div class="a-row__preview ui ui--compact fx" aria-hidden="true">
-              <div class="ui-kpis">
-                <div class="kpi"><div class="kpi__label" data-i18n="screen.occ">Obłożenie</div><div class="kpi__value display">78%</div><div class="kpi__delta"><b>▲ 4%</b></div></div>
-                <div class="kpi"><div class="kpi__label" data-i18n="screen.adr">ADR</div><div class="kpi__value display" data-price="142">€142</div><div class="kpi__delta"><b>▲ 6%</b></div></div>
-                <div class="kpi"><div class="kpi__label" data-i18n="screen.revpar">RevPAR</div><div class="kpi__value display" data-price="111">€111</div><div class="kpi__delta"><b>▲ 9%</b></div></div>
-              </div>
-              <div class="ui-chart">
-                <svg viewBox="0 0 300 70">
-                  <path d="M4 52L34 48L64 50L94 40L124 37L154 42L184 33L214 29L244 34L296 24" fill="none" stroke="#a3a3a3" stroke-width="1.3" stroke-dasharray="4 5"/>
-                  <path class="fx-draw" pathLength="1" d="M4 46L34 39L64 42L94 30L124 25L154 31L184 20L214 13L244 18L296 6" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
-            </div>
-          </li>
-          <li class="a-row">
-            <span class="a-row__n display">04</span>
-            <div class="a-row__text">
-              <h3 class="display a-row__t" data-i18n="modules.m4.t">Budżet i planowanie</h3>
-              <p data-i18n="modules.m4.d">Miesięczny i roczny plan przychodów, na bieżąco porównywany z wykonaniem.</p>
-            </div>
-            <div class="a-row__preview ui fx" aria-hidden="true">
-              <div class="ui__head"><span class="ui__title" data-i18n="plan.title">Plan a wykonanie</span><span class="ui__meta">2026</span></div>
-              <div class="ui-bars">
-                <div class="bar"><i style="--h:74%"></i><i style="--h:80%"></i></div>
-                <div class="bar"><i style="--h:90%"></i><i style="--h:96%"></i></div>
-                <div class="bar"><i style="--h:68%"></i><i style="--h:63%"></i></div>
-                <div class="bar"><i style="--h:56%"></i><i class="is-fc" style="--h:61%"></i></div>
-                <div class="bar"><i style="--h:42%"></i><i class="is-fc" style="--h:45%"></i></div>
-                <div class="bar"><i style="--h:52%"></i><i class="is-fc" style="--h:57%"></i></div>
-              </div>
-              <div class="bar-labels">
-                <span data-date="2026-07-01" data-fmt="mon">Jul</span><span data-date="2026-08-01" data-fmt="mon">Aug</span><span data-date="2026-09-01" data-fmt="mon">Sep</span><span data-date="2026-10-01" data-fmt="mon">Oct</span><span data-date="2026-11-01" data-fmt="mon">Nov</span><span data-date="2026-12-01" data-fmt="mon">Dec</span>
-              </div>
-              <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 FOR WHOM -->
+  <!-- FOR WHOM -->
   <section class="a-section wrap" id="audience" aria-labelledby="audience-h">
     <div>
-      <h2 id="audience-h" class="display a-h2" data-i18n="audience.title">Dla hoteli bez działu revenue</h2>
+      <h2 id="audience-h" class="display a-h2" data-i18n="audience.title">Dla hoteli bez specjalisty od cen</h2>
       <ul class="a-aud">
         <li class="reveal">
           <span class="a-aud__n display" aria-hidden="true">01</span>
           <h3 class="display a-aud__t" data-i18n="audience.a1.t">Hotele niezależne</h3>
-          <p data-i18n="audience.a1.d">Jeden obiekt, jeden właściciel, sto decyzji dziennie. Rumilo zdejmuje z tej listy ceny.</p>
+          <p data-i18n="audience.a1.d">Jeden obiekt, jeden właściciel, sto decyzji dziennie. Roomila zdejmuje z tej listy ceny.</p>
         </li>
         <li class="reveal">
           <span class="a-aud__n display" aria-hidden="true">02</span>
@@ -374,11 +327,11 @@
     </div>
   </section>
 
-  <!-- 04 WHY -->
+  <!-- WHY -->
   <section class="a-section wrap a-ruled" id="why" aria-labelledby="why-h">
     <div class="a-why">
       <div>
-        <h2 id="why-h" class="display a-h2" data-i18n="why.title">Co wyróżnia Rumilo</h2>
+        <h2 id="why-h" class="display a-h2" data-i18n="why.title">Dlaczego Roomila</h2>
         <div class="acc a-acc">
           <details open data-panel="1">
             <summary><span class="display" data-i18n="why.w1.t">Zrozumiała automatyzacja</span></summary>
@@ -394,14 +347,6 @@
               <li data-i18n="why.w2.b1">Ceny podążają za prognozowanym popytem, a nie za zeszłorocznym kalendarzem.</li>
               <li data-i18n="why.w2.b2">Terminy o wysokim popycie nie wyprzedają się za tanio i za wcześnie.</li>
               <li data-i18n="why.w2.b3">Terminy o niskim popycie dostają uwagę, zanim zamienią się w puste pokoje.</li>
-            </ul>
-          </details>
-          <details data-panel="3">
-            <summary><span class="display" data-i18n="why.w3.t">Analityka bez upiększeń</span></summary>
-            <ul>
-              <li data-i18n="why.w3.b1">Prognozy są przeliczane na świeżych danych o rezerwacjach, więc nadążają za rynkiem.</li>
-              <li data-i18n="why.w3.b2">Jeden zestaw liczb dla właściciela, dyrektora i recepcji.</li>
-              <li data-i18n="why.w3.b3">Plan i wykonanie widać codziennie, a nie dopiero na koniec miesiąca.</li>
             </ul>
           </details>
         </div>
@@ -433,38 +378,46 @@
           </div>
           <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
         </div>
-        <div class="ui" data-panel-view="3">
-          <div class="ui__head"><span class="ui__title" data-i18n="plan.title">Plan a wykonanie</span><span class="ui__meta">2026</span></div>
-          <div class="ui-bars">
-            <div class="bar"><i style="--h:74%"></i><i style="--h:80%"></i></div>
-            <div class="bar"><i style="--h:90%"></i><i style="--h:96%"></i></div>
-            <div class="bar"><i style="--h:68%"></i><i style="--h:63%"></i></div>
-            <div class="bar"><i style="--h:56%"></i><i class="is-fc" style="--h:61%"></i></div>
-            <div class="bar"><i style="--h:42%"></i><i class="is-fc" style="--h:45%"></i></div>
-            <div class="bar"><i style="--h:52%"></i><i class="is-fc" style="--h:57%"></i></div>
-          </div>
-          <div class="bar-labels">
-            <span data-date="2026-07-01" data-fmt="mon">Jul</span><span data-date="2026-08-01" data-fmt="mon">Aug</span><span data-date="2026-09-01" data-fmt="mon">Sep</span><span data-date="2026-10-01" data-fmt="mon">Oct</span><span data-date="2026-11-01" data-fmt="mon">Nov</span><span data-date="2026-12-01" data-fmt="mon">Dec</span>
-          </div>
-          <div class="legend">
-            <span><i class="is-box"></i><span data-i18n="plan.plan">Plan</span></span>
-            <span><i class="is-box is-actual"></i><span data-i18n="plan.actual">Wykonanie</span></span>
-            <span><i class="is-box is-flag"></i><span data-i18n="screen.legendFc">Prognoza</span></span>
-          </div>
-          <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
-        </div>
       </div>
     </div>
+  </section>
+
+  <!-- GROWING TOGETHER (presentation slide 03): the proactive part, we reach out first -->
+  <section class="a-section wrap a-ruled" id="together" aria-labelledby="together-h">
+    <h2 id="together-h" class="display a-h2" data-i18n="together.title">Rośniemy razem z hotelem</h2>
+    <p class="a-together__lead" data-i18n="together.lead">Nie czekamy, aż hotel zadzwoni z problemem. Odzywamy się pierwsi.</p>
+    <ol class="a-together">
+      <li class="reveal">
+        <span class="a-together__n display" aria-hidden="true">01</span>
+        <h3 class="display a-together__t" data-i18n="together.s1.t">Rozmowa</h3>
+        <p data-i18n="together.s1.d">Poznajemy hotel, jego kalendarz i to, jak dziś ustala ceny.</p>
+      </li>
+      <li class="reveal">
+        <span class="a-together__n display" aria-hidden="true">02</span>
+        <h3 class="display a-together__t" data-i18n="together.s2.t">Wdrożenie</h3>
+        <p data-i18n="together.s2.d">Konfigurujemy system i razem z hotelem ustalamy granice cen.</p>
+      </li>
+      <li class="reveal">
+        <span class="a-together__n display" aria-hidden="true">03</span>
+        <h3 class="display a-together__t" data-i18n="together.s3.t">Telefon co tydzień</h3>
+        <p data-i18n="together.s3.d">Co tydzień sami dzwonimy, żeby omówić ceny i nadchodzące wydarzenia.</p>
+      </li>
+      <li class="reveal is-key">
+        <span class="a-together__n display" aria-hidden="true">04</span>
+        <h3 class="display a-together__t" data-i18n="together.s4.t">Nowe funkcje za darmo</h3>
+        <p data-i18n="together.s4.d">Każda nowa funkcja trafia do hotelu bez dodatkowych opłat.</p>
+      </li>
+    </ol>
   </section>
 
   <!-- CTA strip -->
   <section class="a-band on-paper" aria-labelledby="band-h">
     <div class="wrap a-band__in">
       <div>
-        <h2 id="band-h" class="display a-band__title" data-i18n="band.title">Ile wart jest kalendarz hotelu?</h2>
+        <h2 id="band-h" class="display a-band__title" data-i18n="band.title">Ile jest wart kalendarz Państwa hotelu?</h2>
         <div class="a-band__cta">
           <a class="btn btn--solid" href="#contact" data-cta-call data-i18n="cta.call">Porozmawiajmy</a>
-          <a class="btn btn--ghost" href="#modules" data-i18n="cta.modules">Przegląd modułów</a>
+          <a class="btn btn--ghost" href="#events" data-i18n="cta.how">Jak to działa</a>
         </div>
       </div>
       <svg class="logo-anim a-band__logo" viewBox="0 -90 760 790" aria-hidden="true" focusable="false">
@@ -472,6 +425,18 @@
         <g class="slab slab--2"><polygon points="0,374 480,280 480,412 0,506" fill="#151515"/><polygon points="480,280 760,360 760,492 480,412" fill="#6b6b6b"/></g>
         <g class="slab slab--3"><polygon points="0,568 480,568 480,700 0,700" fill="#151515"/><polygon points="480,568 760,568 760,700 480,700" fill="#6b6b6b"/></g>
       </svg>
+    </div>
+  </section>
+
+  <!-- Booking: Cal.com calendar, calls with Antoni Małocha only. Stays hidden until
+       CONFIG.calLink in assets/js/main.js is set; main.js then shows it, points every
+       "Porozmawiajmy" button here and loads the calendar when the block comes near. -->
+  <section class="a-section wrap a-book" id="book" aria-labelledby="book-h" data-book hidden>
+    <h2 id="book-h" class="display a-h2" data-i18n="book.title">Wolne terminy rozmów</h2>
+    <p class="muted a-book__lead" data-i18n="book.lead">Rozmowa wideo z Antonim Małochą: poznajemy hotel i pokazujemy produkt. Potwierdzenie terminu przychodzi e-mailem.</p>
+    <p class="a-book__person"><span class="a-book__name">Antoni Małocha</span> <a class="a-book__mail" href="mailto:antoni.malocha@startwarsaw.org">antoni.malocha@startwarsaw.org</a></p>
+    <div class="a-book__cal" data-cal-inline>
+      <p class="muted a-book__note" data-cal-note data-i18n="book.loading">Ładowanie kalendarza…</p>
     </div>
   </section>
 
@@ -518,16 +483,16 @@
   </div>
   <div class="a-footer__info on-paper">
     <div class="a-footer__inner">
-      <img src="assets/img/logo/rumilo-horizontal-black.svg" alt="Rumilo" width="157" height="28" loading="lazy">
-      <p class="a-footer__tag" data-i18n="footer.tagline">System revenue management dla hoteli</p>
+      <img src="assets/img/logo/roomila-horizontal-black.svg" alt="Roomila" width="177" height="28" loading="lazy">
+      <p class="a-footer__tag" data-i18n="footer.tagline">Stoimy na straży cen hotelu</p>
       <a class="display a-footer__mail" data-email hidden></a>
       <ul class="a-footer__links">
+        <li><a href="#events" data-i18n="nav.events">Wydarzenia</a></li>
         <li><a href="#product" data-i18n="nav.product">Produkt</a></li>
-        <li><a href="#modules" data-i18n="nav.modules">Moduły</a></li>
         <li><a href="#audience" data-i18n="nav.audience">Dla kogo</a></li>
-        <li><a href="#why" data-i18n="nav.why">Dlaczego Rumilo</a></li>
+        <li><a href="#why" data-i18n="nav.why">Dlaczego Roomila</a></li>
       </ul>
-      <p class="a-footer__rights" data-i18n="footer.rights">© 2026 Rumilo</p>
+      <p class="a-footer__rights" data-i18n="footer.rights">© 2026 Roomila</p>
     </div>
   </div>
 </div>

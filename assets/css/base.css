@@ -1,4 +1,4 @@
-/* Rumilo landing — shared foundation for both variants.
+/* Roomila landing — shared foundation for both variants.
    Variant skins (a.css / b.css) only override the custom properties below
    and add their own section layouts. */
 
@@ -668,7 +668,7 @@ p {
   }
 }
 
-/* ---------- hero (IDeaS composition, Rumilo skin) ---------- */
+/* ---------- hero (IDeaS composition, Roomila skin) ---------- */
 
 .hero {
   display: grid;
@@ -1494,8 +1494,16 @@ p {
   }
 }
 
+/* a column, so the figures line up across tiles even when one label wraps
+   ("Przychód na pokój"); the stacked layout above keeps its own grid */
 .kpi {
+  display: flex;
+  flex-direction: column;
   padding: 14px 12px 14px 0;
+}
+
+.kpi__label {
+  flex: 1 0 auto;
 }
 
 .kpi + .kpi {

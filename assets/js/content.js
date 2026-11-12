@@ -1,17 +1,20 @@
-/* Rumilo landing — all site copy, PL (default) + EN.
+/* Roomila landing — all site copy, PL (default) + EN.
    Edit texts here; the HTML carries the Polish text only as the pre-script fallback.
-   Loaded as a classic script so the pages also work when opened from disk. */
+   Loaded as a classic script so the pages also work when opened from disk.
+   Polish copy: no English words (AI is the one exception) and no informal address.
+   Some keys (modules, why.w3, plan, bento, decide, facts.b) are used only by variant B in b/. */
 window.RUMILO_I18N = {
   en: {
     meta: {
-      title: 'Rumilo — revenue management system for hotels',
-      desc: 'Dynamic pricing, demand forecasting, analytics and budgeting for independent hotels, boutique hotels, aparthotels and hostels.'
+      title: 'Roomila — guarding your hotel’s rates',
+      desc: 'Roomila tracks events and demand and recommends the right rate for every night. For independent and boutique hotels, aparthotels and hostels.'
     },
     nav: {
+      events: 'Events',
       product: 'Product',
       modules: 'Modules',
       audience: 'For whom',
-      why: 'Why Rumilo',
+      why: 'Why Roomila',
       contact: 'Contact',
       menu: 'Menu',
       close: 'Close menu',
@@ -25,17 +28,17 @@ window.RUMILO_I18N = {
       modules: 'Explore the modules'
     },
     hero: {
-      title: 'Powering profitable',
+      title: 'Guarding the rates of',
       titleSr: 'independent and boutique hotels, aparthotels and hostels',
       words: ['independent hotels', 'boutique hotels', 'aparthotels', 'hostels'],
-      lead: 'AI-driven pricing, demand forecasting and revenue planning, built for hotels that run without a dedicated revenue team.',
+      lead: 'So no room ever goes for next to nothing. Roomila watches local events and demand, forecasts occupancy and recommends the rate before a date sells out.',
       visualAlt: 'Illustration: a hotel with panels showing recommended rates, a demand calendar and a revenue chart',
       tagPricing: 'Dynamic Pricing',
       tagInsights: 'AI Insights',
       tagOccupancy: 'Maximize Occupancy',
       tagRevenue: 'Boost Revenue',
-      tipTitle: 'New opportunity',
-      tipText: 'to influence demand'
+      tipTitle: 'New event',
+      tipText: 'demand rising'
     },
     motion: {
       pause: 'Pause animation',
@@ -60,18 +63,40 @@ window.RUMILO_I18N = {
         { d: 'down', v: '3 days', t: 'Booking lead time, city hotels' }
       ]
     },
+    events: {
+      title: 'Concert announced. Rates updated before anyone books cheap.',
+      p: 'Concerts, trade fairs, matches and long weekends lift demand long before the first booking. Roomila tracks events around your hotel and recommends a new rate right away, before the cheapest rooms are gone.',
+      tag: 'New event',
+      name: 'Concert, Tauron Arena Kraków',
+      priceOld: '€70',
+      priceNew: '€165',
+      gainLabel: '10 rooms, one night',
+      gain: '+€950',
+      note: 'Example'
+    },
     facts: {
-      title: 'Rumilo at a glance',
+      title: 'Roomila at a glance',
       a: { unit: 'days', label: 'of rates planned ahead' },
       b: { unit: 'modules', label: 'in one system' },
+      f: { unit: 'data sources', label: 'behind every rate' },
       c: { label: 'demand monitoring' },
       d: { unit: 'screen', label: 'for daily decisions' },
       e: { unit: 'spreadsheets', label: 'to maintain' }
     },
     product: {
-      title: 'One system for pricing, forecasting and planning',
-      p1: 'Rumilo brings the tools of large-chain revenue management to hotels that never had a revenue department. It reads your booking data, forecasts demand for every future date and recommends the rate that earns the most from it.',
+      title: 'Data instead of empty rooms',
+      p1: 'Roomila combines six data sources and turns them into a rate for every night and every room type. Built for hotels without a pricing specialist: no spreadsheets, no guesswork.',
       p2: 'You stay in control: every recommendation comes with its reasons, and you decide what goes live.'
+    },
+    data: {
+      label: 'Data sources',
+      s1: 'Events',
+      s2: 'Historical data',
+      s3: 'Competitor rates',
+      s4: 'Booking-site traffic',
+      s5: 'Demand level',
+      s6: 'Season',
+      result: 'The right rate for every night'
     },
     screen: {
       title: 'Today',
@@ -92,14 +117,14 @@ window.RUMILO_I18N = {
       m4: { t: 'Budgeting & planning', d: 'Monthly and yearly revenue plan, tracked against actuals as the season unfolds.' }
     },
     audience: {
-      title: 'Built for hotels without a revenue department',
-      a1: { t: 'Independent hotels', d: 'One property, one owner, a hundred decisions a day. Rumilo takes pricing off the list.' },
+      title: 'Built for hotels without a pricing specialist',
+      a1: { t: 'Independent hotels', d: 'One property, one owner, a hundred decisions a day. Roomila takes pricing off the list.' },
       a2: { t: 'Boutique hotels', d: 'Few rooms, high value. Price every room type for what its date is really worth.' },
       a3: { t: 'Aparthotels & extended stay', d: 'Balance short and long stays so the calendar fills without gaps.' },
       a4: { t: 'Hostels', d: 'Price beds and private rooms by demand, night by night.' }
     },
     why: {
-      title: 'What sets Rumilo apart',
+      title: 'Why Roomila',
       w1: {
         t: 'Automation you can read',
         b1: 'Every recommendation shows the reasons behind it: demand, booking pace, season.',
@@ -118,6 +143,14 @@ window.RUMILO_I18N = {
         b2: 'One set of numbers for the owner, the manager and the front office.',
         b3: 'Plan versus actual is visible every day, not at month end.'
       }
+    },
+    together: {
+      title: 'Growing together with your hotel',
+      lead: 'We don’t wait for your hotel to call with a problem. We reach out first.',
+      s1: { t: 'Call', d: 'We get to know your hotel, its calendar and how you set rates today.' },
+      s2: { t: 'Onboarding', d: 'We set up the system and agree the price limits with you.' },
+      s3: { t: 'A call every week', d: 'Every week we call you to go over rates and upcoming events.' },
+      s4: { t: 'New features for free', d: 'Every new feature reaches your hotel at no extra cost.' }
     },
     reco: {
       title: 'Recommendation',
@@ -149,10 +182,16 @@ window.RUMILO_I18N = {
     },
     decide: {
       title: 'Every price comes with its reasons',
-      p: 'Rumilo shows why it recommends a rate: forecast demand, booking pace, season. You accept it, adjust it or set your own, within the limits you define.'
+      p: 'Roomila shows why it recommends a rate: forecast demand, booking pace, season. You accept it, adjust it or set your own, within the limits you define.'
     },
     band: {
-      title: 'See what your calendar is worth'
+      title: 'What is your hotel’s calendar worth?'
+    },
+    book: {
+      title: 'Pick a time for a call',
+      lead: 'An online call with Antoni Małocha: we get to know your hotel and show you the product. The confirmation arrives by email.',
+      loading: 'Loading the calendar…',
+      failed: 'The calendar did not load. You can leave a call request in the form below.'
     },
     contact: {
       title: 'Book a call',
@@ -172,21 +211,22 @@ window.RUMILO_I18N = {
       err: 'Please fill in your name, hotel and a way to reach you, and tick the consent box.'
     },
     footer: {
-      tagline: 'Revenue management system for hotels',
-      rights: '© 2026 Rumilo'
+      tagline: 'Guarding your hotel’s rates',
+      rights: '© 2026 Roomila'
     }
   },
 
   pl: {
     meta: {
-      title: 'Rumilo — system revenue management dla hoteli',
-      desc: 'Dynamiczne ceny, prognoza popytu, analityka i budżetowanie dla hoteli niezależnych, butikowych, aparthoteli i hosteli.'
+      title: 'Roomila — stoimy na straży cen hotelu',
+      desc: 'Roomila śledzi wydarzenia i popyt i podpowiada właściwą cenę na każdą noc. Dla hoteli niezależnych, butikowych, aparthoteli i hosteli.'
     },
     nav: {
+      events: 'Wydarzenia',
       product: 'Produkt',
       modules: 'Moduły',
       audience: 'Dla kogo',
-      why: 'Dlaczego Rumilo',
+      why: 'Dlaczego Roomila',
       contact: 'Kontakt',
       menu: 'Menu',
       close: 'Zamknięcie menu',
@@ -200,17 +240,17 @@ window.RUMILO_I18N = {
       modules: 'Przegląd modułów'
     },
     hero: {
-      title: 'Większy zysk dla',
+      title: 'Stoimy na straży cen',
       titleSr: 'hoteli niezależnych i butikowych, aparthoteli i hosteli',
       words: ['hoteli niezależnych', 'hoteli butikowych', 'aparthoteli', 'hosteli'],
-      lead: 'Dynamiczne ceny, prognoza popytu i planowanie przychodów oparte na AI. Dla hoteli, które działają bez własnego działu revenue.',
+      lead: 'Pilnujemy, żeby żaden pokój nie poszedł przypadkiem za pół darmo. Roomila śledzi wydarzenia i popyt, prognozuje obłożenie i podpowiada cenę, zanim termin się wyprzeda.',
       visualAlt: 'Ilustracja: hotel z panelami pokazującymi rekomendowane ceny, kalendarz popytu i wykres przychodu',
       tagPricing: 'Dynamiczne ceny',
       tagInsights: 'Wskazówki AI',
       tagOccupancy: 'Wyższe obłożenie',
       tagRevenue: 'Większy przychód',
-      tipTitle: 'Nowa okazja',
-      tipText: 'by wpłynąć na popyt'
+      tipTitle: 'Nowe wydarzenie',
+      tipText: 'popyt rośnie'
     },
     motion: {
       pause: 'Wstrzymanie animacji',
@@ -218,7 +258,7 @@ window.RUMILO_I18N = {
     },
     ticker: {
       label: 'Sygnały rynkowe',
-      demo: 'demo',
+      demo: 'przykładowe',
       aria: 'Sygnały rynkowe, które śledzi system (dane przykładowe)',
       up: 'wzrost',
       down: 'spadek',
@@ -234,24 +274,46 @@ window.RUMILO_I18N = {
         { d: 'down', v: '3 dni', t: 'Wyprzedzenie rezerwacji, hotele miejskie' }
       ]
     },
+    events: {
+      title: 'Koncert ogłoszony. Ceny zmienione, zanim ktoś zarezerwuje tanio.',
+      p: 'Koncerty, targi, mecze i długie weekendy podnoszą popyt na długo przed pierwszą rezerwacją. Roomila śledzi wydarzenia w okolicy hotelu i od razu podpowiada nową cenę, zanim najtańsze pokoje znikną.',
+      tag: 'Nowe wydarzenie',
+      name: 'Koncert, Tauron Arena Kraków',
+      priceOld: '300 zł',
+      priceNew: '700 zł',
+      gainLabel: '10 pokoi, jedna noc',
+      gain: '+4000 zł',
+      note: 'Przykład'
+    },
     facts: {
-      title: 'Rumilo w skrócie',
+      title: 'Roomila w skrócie',
       a: { unit: 'dni', label: 'cen zaplanowanych z wyprzedzeniem' },
       b: { unit: 'moduły', label: 'w jednym systemie' },
+      f: { unit: 'źródeł danych', label: 'w każdej cenie' },
       c: { label: 'monitoring popytu' },
       d: { unit: 'ekran', label: 'do codziennych decyzji' },
       e: { unit: 'arkuszy', label: 'do prowadzenia' }
     },
     product: {
-      title: 'Jeden system do cen, prognoz i planowania',
-      p1: 'Rumilo daje hotelom bez działu revenue narzędzia, z których korzystają duże sieci. Analizuje dane o rezerwacjach, prognozuje popyt na każdy przyszły termin i podpowiada cenę, która przyniesie najwyższy przychód.',
+      title: 'Dane zamiast pustych pokoi',
+      p1: 'Roomila łączy sześć źródeł danych i na ich podstawie wylicza cenę dla każdej nocy i każdego typu pokoju. Dla hoteli bez specjalisty od cen: bez arkuszy i bez zgadywania.',
       p2: 'Kontrola zostaje po stronie hotelu: każda rekomendacja ma uzasadnienie, a o publikacji ceny decyduje człowiek.'
+    },
+    data: {
+      label: 'Źródła danych',
+      s1: 'Wydarzenia',
+      s2: 'Dane historyczne',
+      s3: 'Ceny konkurencji',
+      s4: 'Ruch na portalach',
+      s5: 'Poziom popytu',
+      s6: 'Sezon',
+      result: 'Właściwa cena na każdą noc'
     },
     screen: {
       title: 'Dziś',
       occ: 'Obłożenie',
-      adr: 'ADR',
-      revpar: 'RevPAR',
+      adr: 'Średnia cena',
+      revpar: 'Przychód na pokój',
       vs: 'r/r',
       legendThis: 'Ten rok',
       legendLast: 'Rok temu',
@@ -262,18 +324,18 @@ window.RUMILO_I18N = {
       title: 'Cztery moduły, jedna codzienna rutyna',
       m1: { t: 'Dynamiczne ceny', d: 'Rekomendacje cen dla każdego terminu i typu pokoju, aktualizowane wraz ze zmianą popytu.' },
       m2: { t: 'Prognoza popytu', d: 'Prognoza obłożenia i popytu na kolejne miesiące z oznaczeniem terminów o wysokim i niskim popycie.' },
-      m3: { t: 'Pulpity i analityka', d: 'RevPAR, ADR, obłożenie i pickup na jednym ekranie, w porównaniu z ubiegłym rokiem.' },
+      m3: { t: 'Pulpity i analityka', d: 'Średnia cena, przychód na pokój, obłożenie i tempo rezerwacji na jednym ekranie, w porównaniu z ubiegłym rokiem.' },
       m4: { t: 'Budżet i planowanie', d: 'Miesięczny i roczny plan przychodów, na bieżąco porównywany z wykonaniem.' }
     },
     audience: {
-      title: 'Dla hoteli bez działu revenue',
-      a1: { t: 'Hotele niezależne', d: 'Jeden obiekt, jeden właściciel, sto decyzji dziennie. Rumilo zdejmuje z tej listy ceny.' },
+      title: 'Dla hoteli bez specjalisty od cen',
+      a1: { t: 'Hotele niezależne', d: 'Jeden obiekt, jeden właściciel, sto decyzji dziennie. Roomila zdejmuje z tej listy ceny.' },
       a2: { t: 'Hotele butikowe', d: 'Mało pokoi, wysoka wartość. Każdy typ pokoju wyceniony tak, jak naprawdę wart jest dany termin.' },
       a3: { t: 'Aparthotele i długie pobyty', d: 'Równowaga krótkich i długich pobytów, dzięki której kalendarz zapełnia się bez luk.' },
       a4: { t: 'Hostele', d: 'Łóżka i pokoje prywatne wyceniane według popytu, noc po nocy.' }
     },
     why: {
-      title: 'Co wyróżnia Rumilo',
+      title: 'Dlaczego Roomila',
       w1: {
         t: 'Zrozumiała automatyzacja',
         b1: 'Każda rekomendacja pokazuje swoje powody: popyt, tempo rezerwacji, sezon.',
@@ -292,6 +354,14 @@ window.RUMILO_I18N = {
         b2: 'Jeden zestaw liczb dla właściciela, dyrektora i recepcji.',
         b3: 'Plan i wykonanie widać codziennie, a nie dopiero na koniec miesiąca.'
       }
+    },
+    together: {
+      title: 'Rośniemy razem z hotelem',
+      lead: 'Nie czekamy, aż hotel zadzwoni z problemem. Odzywamy się pierwsi.',
+      s1: { t: 'Rozmowa', d: 'Poznajemy hotel, jego kalendarz i to, jak dziś ustala ceny.' },
+      s2: { t: 'Wdrożenie', d: 'Konfigurujemy system i razem z hotelem ustalamy granice cen.' },
+      s3: { t: 'Telefon co tydzień', d: 'Co tydzień sami dzwonimy, żeby omówić ceny i nadchodzące wydarzenia.' },
+      s4: { t: 'Nowe funkcje za darmo', d: 'Każda nowa funkcja trafia do hotelu bez dodatkowych opłat.' }
     },
     reco: {
       title: 'Rekomendacja',
@@ -323,10 +393,16 @@ window.RUMILO_I18N = {
     },
     decide: {
       title: 'Każda cena ma swoje uzasadnienie',
-      p: 'Rumilo pokazuje, dlaczego rekomenduje daną cenę: prognozowany popyt, tempo rezerwacji, sezon. Cenę można zaakceptować, skorygować albo ustawić własną, w granicach określonych przez hotel.'
+      p: 'Roomila pokazuje, dlaczego rekomenduje daną cenę: prognozowany popyt, tempo rezerwacji, sezon. Cenę można zaakceptować, skorygować albo ustawić własną, w granicach określonych przez hotel.'
     },
     band: {
-      title: 'Ile wart jest kalendarz hotelu?'
+      title: 'Ile jest wart kalendarz Państwa hotelu?'
+    },
+    book: {
+      title: 'Wolne terminy rozmów',
+      lead: 'Rozmowa wideo z Antonim Małochą: poznajemy hotel i pokazujemy produkt. Potwierdzenie terminu przychodzi e-mailem.',
+      loading: 'Ładowanie kalendarza…',
+      failed: 'Kalendarz się nie załadował. Prośbę o rozmowę można zostawić w formularzu poniżej.'
     },
     contact: {
       title: 'Porozmawiajmy',
@@ -346,8 +422,8 @@ window.RUMILO_I18N = {
       err: 'Wymagane: imię, nazwa hotelu, sposób kontaktu i zaznaczona zgoda.'
     },
     footer: {
-      tagline: 'System revenue management dla hoteli',
-      rights: '© 2026 Rumilo'
+      tagline: 'Stoimy na straży cen hotelu',
+      rights: '© 2026 Roomila'
     }
   }
 };

@@ -1,4 +1,4 @@
-/* Rumilo landing — behaviour shared by both variants.
+/* Roomila landing — behaviour shared by both variants.
    Classic script (no modules) so the pages also work when opened from disk. */
 (function () {
   'use strict';
@@ -8,15 +8,18 @@
      contactEndpoint: where the "Book a call" form is posted. On Vercel this is
                    the function in api/contact.js, which emails the team via Resend.
      contactEmail: optional public address shown in the footer (hidden while empty).
-     bookingUrl:   optional scheduling link (Calendly, Cal.com…). When set,
-                   every "Book a call" button opens it instead of the form.
+     calLink:      Antoni Małocha's Cal.com event, written as "username/event-slug"
+                   (the part after cal.com/ in the booking link). When set, the
+                   calendar block (#book) appears above the form and every
+                   "Book a call" button leads to it. Empty: block hidden, buttons
+                   lead to the form.
      defaultLang:  language shown to a first-time visitor.
      plnPerEur:    rate used to show demo prices in zł on the Polish version.
      ------------------------------------------------------------------ */
   var CONFIG = {
     contactEndpoint: '/api/contact',
     contactEmail: '',
-    bookingUrl: '',
+    calLink: '',
     defaultLang: 'pl',
     plnPerEur: 4.3
   };
@@ -537,12 +540,79 @@
     a.hidden = false;
   });
 
-  if (CONFIG.bookingUrl) {
+  /* Booking calendar (Cal.com inline embed). The embed script is fetched only when the
+     block comes near the viewport or a "Book a call" button is pressed. */
+  var book = document.querySelector('[data-book]');
+  var calBox = book && book.querySelector('[data-cal-inline]');
+  if (book && calBox && CONFIG.calLink) {
+    var CAL_ORIGIN = 'https://app.cal.com';
+    var CAL_SCRIPT = CAL_ORIGIN + '/embed/embed.js';
+    var calNote = book.querySelector('[data-cal-note]');
+    var calStarted = false;
+
+    var calFailed = function () {
+      if (calBox.getAttribute('data-state') === 'ready' || !calNote) return;
+      calBox.setAttribute('data-state', 'failed');
+      calNote.setAttribute('data-i18n', 'book.failed');
+      calNote.textContent = pick(I18N[lang] || {}, 'book.failed') || '';
+    };
+
+    var startCal = function () {
+      if (calStarted) return;
+      calStarted = true;
+      // Cal.com's own loader: queues calls until embed.js has arrived
+      /* eslint-disable */
+      (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, CAL_SCRIPT, 'init');
+      /* eslint-enable */
+      var Cal = window.Cal;
+      Cal('init', 'rumilo', { origin: CAL_ORIGIN });
+      var tag = document.querySelector('script[src="' + CAL_SCRIPT + '"]');
+      if (tag) tag.addEventListener('error', calFailed);
+
+      var calApi = Cal.ns.rumilo;
+      calApi('inline', {
+        elementOrSelector: calBox,
+        calLink: CONFIG.calLink,
+        config: { layout: 'month_view', theme: 'dark' }
+      });
+      calApi('ui', {
+        theme: 'dark',
+        layout: 'month_view',
+        hideEventTypeDetails: false,
+        cssVarsPerTheme: {
+          dark: {
+            'cal-brand': '#ffffff',
+            'cal-brand-text': '#151515',
+            'cal-bg': '#151515',
+            'cal-bg-muted': '#1c1c1c',
+            'cal-bg-subtle': '#242424',
+            'cal-border-booker': 'rgba(255, 255, 255, 0.12)',
+            radius: '0px'
+          }
+        }
+      });
+      calApi('on', {
+        action: 'linkReady',
+        callback: function () { calBox.setAttribute('data-state', 'ready'); }
+      });
+      calApi('on', { action: 'linkFailed', callback: calFailed });
+    };
+
+    book.hidden = false;
     all('[data-cta-call]').forEach(function (a) {
-      a.setAttribute('href', CONFIG.bookingUrl);
-      a.setAttribute('target', '_blank');
-      a.setAttribute('rel', 'noopener');
+      a.setAttribute('href', '#book');
+      a.addEventListener('click', startCal);
     });
+    if (window.location.hash === '#book' || !('IntersectionObserver' in window)) {
+      startCal(); // opened straight on the calendar, or no way to watch for it
+    } else {
+      var calWatch = new IntersectionObserver(function (entries) {
+        if (!entries.some(function (e) { return e.isIntersecting; })) return;
+        calWatch.disconnect();
+        startCal();
+      }, { rootMargin: '800px 0px' });
+      calWatch.observe(book);
+    }
   }
 
   var form = document.querySelector('[data-call-form]');

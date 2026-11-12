@@ -13,7 +13,7 @@
    2. Resend (https://resend.com). Used when the Gmail variables are absent, and as
       a second try when Gmail fails.
         RESEND_API_KEY  API key from the Resend dashboard.
-        CONTACT_FROM    the sender (not a recipient), e.g. "Rumilo <rozmowa@your-domain.pl>".
+        CONTACT_FROM    the sender (not a recipient), e.g. "Roomila <rozmowa@your-domain.pl>".
                         Its domain must be verified in Resend. Without a verified domain
                         Resend delivers only to the owner of the Resend account, and the
                         request is then sent to that owner alone, with a note in the letter.
@@ -37,7 +37,7 @@ const DEFAULT_TO = [
   'weronika.zygis@startwarsaw.org',
   'mikhail.troian@startwarsaw.org'
 ];
-const TEST_SENDER = 'Rumilo <onboarding@resend.dev>';
+const TEST_SENDER = 'Roomila <onboarding@resend.dev>';
 const LIMITS = { name: 120, hotel: 160, reach: 160, time: 160 };
 const EMAIL_RE = /^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/;
 const LOGIN_CHECK_TTL = 2 * 60 * 1000;
@@ -87,7 +87,7 @@ function page(lang, ok, message) {
   const title = ok ? t.okTitle : t.failTitle;
   return '<!DOCTYPE html><html lang="' + lang + '"><head><meta charset="utf-8">' +
     '<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark">' +
-    '<meta name="robots" content="noindex"><title>' + escapeHtml(title) + ' — Rumilo</title>' +
+    '<meta name="robots" content="noindex"><title>' + escapeHtml(title) + ' — Roomila</title>' +
     '<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#151515;color:#fff;' +
     'font:1rem/1.55 system-ui,sans-serif}main{max-width:32rem;padding:2rem}h1{margin:0 0 .75rem;font-size:2rem;' +
     'line-height:1.1}p{margin:0 0 1.5rem;color:#a3a3a3}a{color:#fff;text-underline-offset:6px}</style></head>' +
@@ -120,7 +120,7 @@ function gmailTransport(settings) {
 async function deliverWithGmail(settings, email) {
   try {
     const info = await gmailTransport(settings).sendMail({
-      from: { name: 'Rumilo', address: settings.user },
+      from: { name: 'Roomila', address: settings.user },
       to: email.to,
       subject: email.subject,
       text: email.text,
@@ -213,7 +213,7 @@ async function deliverWithResend(apiKey, message) {
 async function setupReport() {
   const gmail = gmailSettings();
   const resend = Boolean(process.env.RESEND_API_KEY);
-  const report = { ok: true, service: 'rumilo contact form', recipients: recipients().length };
+  const report = { ok: true, service: 'roomila contact form', recipients: recipients().length };
   const say = (transport, delivery, hint) => Object.assign(report, { transport, delivery, hint });
 
   if (gmail) {
@@ -297,9 +297,9 @@ module.exports = async function handler(req, res) {
 
   const message = {
     to: recipients(),
-    subject: 'Rumilo: call request — ' + data.hotel,
+    subject: 'Roomila: call request — ' + data.hotel,
     text: [
-      'New call request from the Rumilo landing page.',
+      'New call request from the Roomila landing page.',
       '',
       'Name:           ' + data.name,
       'Hotel:          ' + data.hotel,
