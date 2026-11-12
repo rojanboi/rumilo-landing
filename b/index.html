@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumilo — system revenue management dla hoteli</title>
+<meta name="description" content="Dynamiczne ceny, prognoza popytu, analityka i budżetowanie dla hoteli niezależnych, butikowych, aparthoteli i hosteli.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#151515">
+<link rel="icon" href="../assets/img/logo/rumilo-favicon.svg" type="image/svg+xml">
+<script>
+/* Runs before first paint: the saved motion preference and the "closed" start
+   state of the animated hero. */
+(function (d) {
+  var r = d.documentElement;
+  var off = false;
+  try { off = localStorage.getItem('rumilo-motion') === 'off'; } catch (e) {}
+  r.setAttribute('data-motion', off ? 'off' : 'on');
+  if (!off && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    r.classList.add('hv-anim');
+    /* failsafe: if the main script never starts the sequence, show everything */
+    setTimeout(function () { if (!window.RUMILO_HV) r.classList.remove('hv-anim'); }, 4000);
+  }
+})(document);
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/b.css">
+</head>
+<body class="variant-b">
+
+<a class="skip" href="#main" data-i18n="nav.skip">Przejdź do treści</a>
+
+<header class="site-header" data-header>
+  <div class="wrap">
+    <div class="site-header__bar" data-header-bar>
+      <a class="brand" href="#top"><img src="../assets/img/logo/rumilo-horizontal-white.svg" alt="Rumilo" width="123" height="22"></a>
+      <nav class="nav" aria-label="Nawigacja główna" data-i18n-attr="aria-label:nav.label">
+        <button type="button" class="menu-toggle" popovertarget="site-menu" popovertargetaction="toggle" aria-controls="site-menu"><svg class="menu-toggle__icon" viewBox="0 0 24 18" aria-hidden="true" focusable="false"><g class="bar bar--1"><rect class="f" x="0" y="0" width="15" height="4"/><rect class="s" x="15" y="0" width="9" height="4"/></g><g class="bar bar--2"><rect class="f" x="0" y="7" width="15" height="4"/><rect class="s" x="15" y="7" width="9" height="4"/></g><g class="bar bar--3"><rect class="f" x="0" y="14" width="15" height="4"/><rect class="s" x="15" y="14" width="9" height="4"/></g></svg><span class="visually-hidden" data-i18n="nav.menu">Menu</span></button>
+        <ul id="site-menu" class="site-menu" popover="auto" data-menu>
+          <li><a href="#modules" data-i18n="nav.modules">Moduły</a></li>
+          <li><a href="#audience" data-i18n="nav.audience">Dla kogo</a></li>
+          <li><a href="#why" data-i18n="nav.why">Dlaczego Rumilo</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+          <li class="site-menu__lang"><div class="lang" role="group" aria-label="Język" data-i18n-attr="aria-label:nav.lang"><button type="button" data-lang="pl" aria-pressed="true">PL</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button></div></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <div class="lang" role="group" aria-label="Język" data-i18n-attr="aria-label:nav.lang"><button type="button" data-lang="pl" aria-pressed="true">PL</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+        <a class="btn btn--solid btn--sm" href="#contact" data-cta-call data-i18n="cta.call">Umów rozmowę</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO: same composition as the IDeaS hero, Rumilo skin -->
+  <section class="hero wrap" id="top">
+    <div class="hero__copy">
+      <h1 class="hero__title display">
+        <span data-i18n="hero.title">Większy zysk dla</span>
+        <span class="rotator" aria-hidden="true"><span data-rotator>hoteli niezależnych</span></span>
+        <span class="visually-hidden" data-i18n="hero.titleSr">hoteli niezależnych i butikowych, aparthoteli i hosteli</span>
+      </h1>
+      <p class="hero__lead" data-i18n="hero.lead">Dynamiczne ceny, prognoza popytu i planowanie przychodów oparte na AI. Dla hoteli, które działają bez własnego działu revenue.</p>
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#contact" data-cta-call data-i18n="cta.call">Umów rozmowę</a>
+        <a class="btn btn--ghost" href="#modules" data-i18n="cta.how">Zobacz, jak to działa</a>
+      </div>
+    </div>
+
+    <div class="hero__visual" data-hv-root>
+      <div class="hv-stage" role="img" aria-label="Ilustracja: hotel z panelami pokazującymi rekomendowane ceny, kalendarz popytu i wykres przychodu" data-i18n-attr="aria-label:hero.visualAlt">
+        <!-- Hotel photo: replace assets/img/hero.jpg (the pattern below shows if the file is missing) -->
+        <div class="hv-photo photo-fallback"><img src="../assets/img/hero.jpg" alt="" width="1537" height="1600" fetchpriority="high" decoding="async" data-optional></div>
+
+        <!-- Every [data-hv] element is opened and closed in sequence by the timeline in main.js -->
+        <div class="hv hv--pricing">
+          <span class="tag hv-pop" data-hv="p-tag">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h9M16 6h1M3 14h1M8 14h9"/><circle cx="14" cy="6" r="2"/><circle cx="6" cy="14" r="2"/></svg>
+            <span data-i18n="hero.tagPricing">Dynamiczne ceny</span>
+          </span>
+          <div class="panel rate hv-fold" data-hv="p-r1">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M10 6v4l2.5 2"/></svg>
+            <span data-date="2027-01-16" data-fmt="md">16 Jan</span>
+            <span class="rate__price hv-swap" data-hv="p-s1"><span class="hv-swap__a" data-price="275">€275</span><span class="hv-swap__b" data-price="289">€289</span></span>
+            <span class="trend">↑</span>
+          </div>
+          <div class="panel rate hv-fold" data-hv="p-r2">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M10 6v4l2.5 2"/></svg>
+            <span data-date="2027-02-16" data-fmt="md">16 Feb</span>
+            <span class="rate__price hv-swap" data-hv="p-s2"><span class="hv-swap__a" data-price="250">€250</span><span class="hv-swap__b" data-price="238">€238</span></span>
+            <span class="trend trend--down">↓</span>
+          </div>
+        </div>
+
+        <div class="hv hv--insights">
+          <span class="tag hv-pop" data-hv="i-tag">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 2.5l1.6 4.4L14 8.5l-4.4 1.6L8 14.5l-1.6-4.4L2 8.5l4.4-1.6L8 2.5zM15.5 11l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z"/></svg>
+            <span data-i18n="hero.tagInsights">Wskazówki AI</span>
+          </span>
+          <div class="panel hv-fold hv-cells" data-hv="i-cal">
+            <div class="cal hv-flag" data-hv="i-flag" data-cal="2026-07" data-levels="1,1,3,4,2,0,1,1,2,3,4,2,1,0,1,2,3,3,3,1,1,2,2,4,4,3,1,1,2,2,4" data-flag="18"></div>
+          </div>
+          <div class="cal-tip hv-pop" data-hv="i-tip"><strong data-i18n="hero.tipTitle">Nowa okazja</strong><span data-i18n="hero.tipText">by wpłynąć na popyt</span></div>
+        </div>
+
+        <div class="hv hv--occupancy">
+          <span class="tag hv-pop" data-hv="o-tag">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"/><path d="M6.8 10.2l2.2 2.2 4.2-4.6"/></svg>
+            <span data-i18n="hero.tagOccupancy">Wyższe obłożenie</span>
+          </span>
+          <div class="panel occ hv-fold" data-hv="o-meter">
+            <div class="occ__row">
+              <span data-date="2026-07-18" data-fmt="wmd">Sat 18 Jul</span>
+              <span class="occ__val hv-swap" data-hv="o-val"><span class="hv-swap__a">62%</span><span class="hv-swap__b">87%</span></span>
+            </div>
+            <div class="occ__bar"><i class="hv-fill" data-hv="o-fill"></i></div>
+          </div>
+        </div>
+
+        <div class="hv hv--revenue">
+          <span class="tag hv-pop" data-hv="r-tag">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14l4.5-4.5 3 3L17 6"/><path d="M12.5 6H17v4.5"/></svg>
+            <span data-i18n="hero.tagRevenue">Większy przychód</span>
+          </span>
+          <div class="panel spark hv-fold" data-hv="r-chart">
+            <svg class="hv-draw" data-hv="r-line" viewBox="0 0 200 84">
+              <defs><linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+              <path d="M6 20h188M6 44h188M6 68h188" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+              <path class="hv-draw__area" d="M6 66L18 58L30 52L42 38L54 33L66 43L78 56L90 48L102 58L114 45L126 30L138 27L150 38L162 44L176 30L194 12V78H6Z" fill="url(#sparkFill)"/>
+              <path class="hv-draw__line" pathLength="1" d="M6 66L18 58L30 52L42 38L54 33L66 43L78 56L90 48L102 58L114 45L126 30L138 27L150 38L162 44L176 30L194 12" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle class="hv-draw__dot" cx="194" cy="12" r="3" fill="#c9b79c"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="motion-toggle" data-motion-toggle aria-label="Pause animation"></button>
+    </div>
+  </section>
+
+  <div class="wrap b-ticker-wrap">
+  <!-- Market signals ticker (demo data, items come from assets/js/content.js) -->
+    <div class="ticker" data-ticker>
+      <p class="ticker__label"><i aria-hidden="true"></i><span data-i18n="ticker.label">Sygnały rynkowe</span><span class="ticker__demo" data-i18n="ticker.demo">demo</span></p>
+      <div class="ticker__track" role="group" tabindex="0" aria-label="Sygnały rynkowe, które śledzi system (dane przykładowe)" data-i18n-attr="aria-label:ticker.aria" data-ticker-track></div>
+    </div>
+  </div>
+
+  <!-- FACTS strip -->
+  <section class="wrap" aria-labelledby="facts-h">
+    <h2 id="facts-h" class="visually-hidden" data-i18n="facts.title">Rumilo w skrócie</h2>
+    <dl class="b-facts">
+      <div class="b-fact">
+        <dt><span class="b-fact__n display">365</span> <span data-i18n="facts.a.unit">dni</span></dt>
+        <dd data-i18n="facts.a.label">cen zaplanowanych z wyprzedzeniem</dd>
+      </div>
+      <div class="b-fact">
+        <dt><span class="b-fact__n display">4</span> <span data-i18n="facts.b.unit">moduły</span></dt>
+        <dd data-i18n="facts.b.label">w jednym systemie</dd>
+      </div>
+      <div class="b-fact">
+        <dt><span class="b-fact__n display">24/7</span></dt>
+        <dd data-i18n="facts.c.label">monitoring popytu</dd>
+      </div>
+      <div class="b-fact">
+        <dt><span class="b-fact__n display">1</span> <span data-i18n="facts.d.unit">ekran</span></dt>
+        <dd data-i18n="facts.d.label">do codziennych decyzji</dd>
+      </div>
+      <div class="b-fact">
+        <dt><span class="b-fact__n display">0</span> <span data-i18n="facts.e.unit">arkuszy</span></dt>
+        <dd data-i18n="facts.e.label">do prowadzenia</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- 01 MODULES: bento grid of product UI -->
+  <section class="b-section wrap" id="modules" aria-labelledby="modules-h">
+    <div class="b-head reveal">
+      <h2 id="modules-h" class="display b-h2" data-i18n="bento.title">Jeden system, cztery zadania</h2>
+      <p class="b-lead" data-i18n="product.p1">Rumilo daje hotelom bez działu revenue narzędzia, z których korzystają duże sieci. Analizuje dane o rezerwacjach, prognozuje popyt na każdy przyszły termin i podpowiada cenę, która przyniesie najwyższy przychód.</p>
+    </div>
+
+    <div class="b-bento">
+      <article class="b-card b-card--7 reveal">
+        <div class="b-card__text">
+          <h3 class="display b-h3" data-i18n="modules.m1.t">Dynamiczne ceny</h3>
+          <p data-i18n="modules.m1.d">Rekomendacje cen dla każdego terminu i typu pokoju, aktualizowane wraz ze zmianą popytu.</p>
+        </div>
+        <div class="ui fx" aria-hidden="true">
+          <div class="ui__head"><span class="ui__title" data-i18n="rates.title">Rekomendacje cen</span><span class="ui__meta" data-i18n="reco.room">Pokój dwuosobowy</span></div>
+          <div class="ui-rates">
+            <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-14" data-fmt="wmd">Fri 14 Aug</span><span class="ui-rates__old" data-price="142">€142</span><span class="ui-rates__new" data-price="158">€158</span><span class="delta delta--up">+11%</span></div>
+            <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-15" data-fmt="wmd">Sat 15 Aug</span><span class="ui-rates__old" data-price="149">€149</span><span class="ui-rates__new" data-price="171">€171</span><span class="delta delta--up">+15%</span></div>
+            <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-16" data-fmt="wmd">Sun 16 Aug</span><span class="ui-rates__old" data-price="128">€128</span><span class="ui-rates__new" data-price="121">€121</span><span class="delta">−5%</span></div>
+            <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-17" data-fmt="wmd">Mon 17 Aug</span><span class="ui-rates__old" data-price="112">€112</span><span class="ui-rates__new" data-price="118">€118</span><span class="delta delta--up">+5%</span></div>
+            <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-18" data-fmt="wmd">Tue 18 Aug</span><span class="ui-rates__old" data-price="109">€109</span><span class="ui-rates__new" data-price="109">€109</span><span class="delta">0%</span></div>
+            <div class="ui-rates__row"><span class="ui-rates__date" data-date="2026-08-19" data-fmt="wmd">Wed 19 Aug</span><span class="ui-rates__old" data-price="115">€115</span><span class="ui-rates__new" data-price="124">€124</span><span class="delta delta--up">+8%</span></div>
+          </div>
+          <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
+        </div>
+      </article>
+
+      <article class="b-card b-card--5 reveal">
+        <div class="b-card__text">
+          <h3 class="display b-h3" data-i18n="modules.m2.t">Prognoza popytu</h3>
+          <p data-i18n="modules.m2.d">Prognoza obłożenia i popytu na kolejne miesiące z oznaczeniem terminów o wysokim i niskim popycie.</p>
+        </div>
+        <div class="ui fx" aria-hidden="true">
+          <div class="cal b-cal" data-cal="2026-08" data-levels="4,2,0,1,1,2,3,4,2,1,1,2,2,4,4,3,1,0,1,1,3,4,2,0,0,1,1,3,3,2,0" data-flag="24,25"></div>
+          <div class="legend">
+            <span><i class="is-box is-high"></i><span data-i18n="demand.high">Wysoki popyt</span></span>
+            <span><i class="is-box is-low"></i><span data-i18n="demand.low">Niski popyt</span></span>
+            <span><i class="is-box is-flag"></i><span data-i18n="demand.flag">Okazja</span></span>
+          </div>
+          <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
+        </div>
+      </article>
+
+      <article class="b-card b-card--5 reveal">
+        <div class="b-card__text">
+          <h3 class="display b-h3" data-i18n="modules.m3.t">Pulpity i analityka</h3>
+          <p data-i18n="modules.m3.d">RevPAR, ADR, obłożenie i pickup na jednym ekranie, w porównaniu z ubiegłym rokiem.</p>
+        </div>
+        <div class="ui fx" aria-hidden="true">
+          <div class="ui-kpis">
+            <div class="kpi"><div class="kpi__label" data-i18n="screen.occ">Obłożenie</div><div class="kpi__value display">78%</div><div class="kpi__delta"><b>▲ 4%</b></div></div>
+            <div class="kpi"><div class="kpi__label" data-i18n="screen.adr">ADR</div><div class="kpi__value display" data-price="142">€142</div><div class="kpi__delta"><b>▲ 6%</b></div></div>
+            <div class="kpi"><div class="kpi__label" data-i18n="screen.revpar">RevPAR</div><div class="kpi__value display" data-price="111">€111</div><div class="kpi__delta"><b>▲ 9%</b></div></div>
+          </div>
+          <div class="ui-chart">
+            <svg viewBox="0 0 480 150">
+              <defs><linearGradient id="kpiFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+              <path d="M10 30h460M10 70h460M10 110h460M10 146h460" stroke="rgba(255,255,255,.1)"/>
+              <path d="M10 110L51.8 102L93.6 108L135.5 90L177.3 86L219.1 94L260.9 80L302.7 74L344.5 82L386.4 70L428.2 76L470 68" fill="none" stroke="#a3a3a3" stroke-width="1.4" stroke-dasharray="4 5"/>
+              <path d="M10 102L51.8 90L93.6 94L135.5 76L177.3 68L219.1 78L260.9 60L302.7 50V146H10Z" fill="url(#kpiFill)"/>
+              <path class="fx-draw" pathLength="1" d="M10 102L51.8 90L93.6 94L135.5 76L177.3 68L219.1 78L260.9 60L302.7 50" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+              <path d="M302.7 50L344.5 56L386.4 42L428.2 48L470 34" fill="none" stroke="#c9b79c" stroke-width="1.8" stroke-dasharray="5 5" stroke-linecap="round"/>
+              <circle cx="302.7" cy="50" r="4" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="legend">
+            <span><i></i><span data-i18n="screen.legendThis">Ten rok</span></span>
+            <span><i class="is-last"></i><span data-i18n="screen.legendLast">Rok temu</span></span>
+            <span><i class="is-fc"></i><span data-i18n="screen.legendFc">Prognoza</span></span>
+          </div>
+          <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
+        </div>
+      </article>
+
+      <article class="b-card b-card--7 reveal">
+        <div class="b-card__text">
+          <h3 class="display b-h3" data-i18n="modules.m4.t">Budżet i planowanie</h3>
+          <p data-i18n="modules.m4.d">Miesięczny i roczny plan przychodów, na bieżąco porównywany z wykonaniem.</p>
+        </div>
+        <div class="ui fx" aria-hidden="true">
+          <div class="ui__head"><span class="ui__title" data-i18n="plan.title">Plan a wykonanie</span><span class="ui__meta">2026</span></div>
+          <div class="ui-bars b-bars">
+            <div class="bar"><i style="--h:74%"></i><i style="--h:80%"></i></div>
+            <div class="bar"><i style="--h:90%"></i><i style="--h:96%"></i></div>
+            <div class="bar"><i style="--h:68%"></i><i style="--h:63%"></i></div>
+            <div class="bar"><i style="--h:56%"></i><i class="is-fc" style="--h:61%"></i></div>
+            <div class="bar"><i style="--h:42%"></i><i class="is-fc" style="--h:45%"></i></div>
+            <div class="bar"><i style="--h:52%"></i><i class="is-fc" style="--h:57%"></i></div>
+          </div>
+          <div class="bar-labels">
+            <span data-date="2026-07-01" data-fmt="mon">Jul</span><span data-date="2026-08-01" data-fmt="mon">Aug</span><span data-date="2026-09-01" data-fmt="mon">Sep</span><span data-date="2026-10-01" data-fmt="mon">Oct</span><span data-date="2026-11-01" data-fmt="mon">Nov</span><span data-date="2026-12-01" data-fmt="mon">Dec</span>
+          </div>
+          <div class="legend">
+            <span><i class="is-box"></i><span data-i18n="plan.plan">Plan</span></span>
+            <span><i class="is-box is-actual"></i><span data-i18n="plan.actual">Wykonanie</span></span>
+            <span><i class="is-box is-flag"></i><span data-i18n="screen.legendFc">Prognoza</span></span>
+          </div>
+          <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 02 HOW IT DECIDES -->
+  <section class="b-section wrap b-decide" aria-labelledby="decide-h">
+    <div class="reveal">
+      <h2 id="decide-h" class="display b-h2" data-i18n="decide.title">Każda cena ma swoje uzasadnienie</h2>
+      <p class="b-lead" data-i18n="decide.p">Rumilo pokazuje, dlaczego rekomenduje daną cenę: prognozowany popyt, tempo rezerwacji, sezon. Akceptujesz ją, korygujesz albo ustawiasz własną, w granicach, które określasz.</p>
+      <a class="btn btn--ghost b-decide__btn" href="#contact" data-cta-call data-i18n="cta.call">Umów rozmowę</a>
+    </div>
+    <div class="b-stage reveal" aria-hidden="true">
+      <div class="ui b-stage__card">
+        <div class="ui__head"><span class="ui__title" data-i18n="reco.title">Rekomendacja</span><span class="ui__meta" data-date="2026-08-15" data-fmt="wmd">Sat 15 Aug</span></div>
+        <div class="ui-reco__price">
+          <div class="is-old"><small data-i18n="reco.current">Obecna</small><b class="display" data-price="149">€149</b></div>
+          <span class="ui-reco__arrow">→</span>
+          <div><small data-i18n="reco.recommended">Rekomendowana</small><b class="display" data-price="171">€171</b></div>
+        </div>
+        <ul class="ui-reco__why">
+          <li data-i18n="reco.r1">Prognoza popytu: wysoki</li>
+          <li data-i18n="reco.r2">Tempo rezerwacji powyżej ubiegłego roku</li>
+          <li data-i18n="reco.r3">Weekend w wysokim sezonie</li>
+        </ul>
+        <div class="ui-reco__actions"><span class="chip chip--solid" data-i18n="reco.accept">Akceptuj</span><span class="chip" data-i18n="reco.adjust">Skoryguj</span></div>
+        <p class="demo-note" data-i18n="demo">Dane przykładowe</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 FOR WHOM -->
+  <section class="b-section wrap" id="audience" aria-labelledby="audience-h">
+    <div class="b-head reveal">
+      <h2 id="audience-h" class="display b-h2" data-i18n="audience.title">Dla hoteli bez działu revenue</h2>
+    </div>
+    <ul class="b-aud">
+      <li class="b-card reveal">
+        <h3 class="display b-h3" data-i18n="audience.a1.t">Hotele niezależne</h3>
+        <p data-i18n="audience.a1.d">Jeden obiekt, jeden właściciel, sto decyzji dziennie. Rumilo zdejmuje z tej listy ceny.</p>
+      </li>
+      <li class="b-card reveal">
+        <h3 class="display b-h3" data-i18n="audience.a2.t">Hotele butikowe</h3>
+        <p data-i18n="audience.a2.d">Mało pokoi, wysoka wartość. Wyceń każdy typ pokoju tak, jak naprawdę wart jest dany termin.</p>
+      </li>
+      <li class="b-card reveal">
+        <h3 class="display b-h3" data-i18n="audience.a3.t">Aparthotele i długie pobyty</h3>
+        <p data-i18n="audience.a3.d">Wyważ krótkie i długie pobyty, żeby kalendarz zapełniał się bez luk.</p>
+      </li>
+      <li class="b-card reveal">
+        <h3 class="display b-h3" data-i18n="audience.a4.t">Hostele</h3>
+        <p data-i18n="audience.a4.d">Wyceniaj łóżka i pokoje prywatne według popytu, noc po nocy.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 04 WHY -->
+  <section class="b-section wrap" id="why" aria-labelledby="why-h">
+    <div class="b-head reveal">
+      <h2 id="why-h" class="display b-h2" data-i18n="why.title">Co wyróżnia Rumilo</h2>
+    </div>
+    <div class="b-why">
+      <article class="b-why__col reveal">
+        <h3 class="display b-h3" data-i18n="why.w1.t">Automatyzacja, którą rozumiesz</h3>
+        <ul>
+          <li data-i18n="why.w1.b1">Każda rekomendacja pokazuje swoje powody: popyt, tempo rezerwacji, sezon.</li>
+          <li data-i18n="why.w1.b2">Akceptujesz, korygujesz albo nadpisujesz jednym kliknięciem, w granicach, które ustalasz.</li>
+          <li data-i18n="why.w1.b3">Mniej rutyny w arkuszach, więcej czasu dla gości i strategii.</li>
+        </ul>
+      </article>
+      <article class="b-why__col reveal">
+        <h3 class="display b-h3" data-i18n="why.w2.t">Przychód, nie tylko cena</h3>
+        <ul>
+          <li data-i18n="why.w2.b1">Ceny podążają za prognozowanym popytem, a nie za zeszłorocznym kalendarzem.</li>
+          <li data-i18n="why.w2.b2">Terminy o wysokim popycie nie wyprzedają się za tanio i za wcześnie.</li>
+          <li data-i18n="why.w2.b3">Terminy o niskim popycie dostają uwagę, zanim zamienią się w puste pokoje.</li>
+        </ul>
+      </article>
+      <article class="b-why__col reveal">
+        <h3 class="display b-h3" data-i18n="why.w3.t">Analityka bez upiększeń</h3>
+        <ul>
+          <li data-i18n="why.w3.b1">Prognozy są przeliczane na świeżych danych o rezerwacjach, więc nadążają za rynkiem.</li>
+          <li data-i18n="why.w3.b2">Jeden zestaw liczb dla właściciela, dyrektora i recepcji.</li>
+          <li data-i18n="why.w3.b3">Plan i wykonanie widać codziennie, a nie dopiero na koniec miesiąca.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- CTA over the hotel photo -->
+  <section class="wrap b-cta-wrap" aria-labelledby="cta-h">
+    <div class="b-cta photo-fallback reveal">
+      <img src="../assets/img/hero.jpg" alt="" width="1537" height="1600" loading="lazy" decoding="async" data-optional>
+      <div class="b-cta__in">
+        <h2 id="cta-h" class="display b-cta__title" data-i18n="band.title">Zobacz, ile wart jest Twój kalendarz</h2>
+        <a class="btn btn--solid" href="#contact" data-cta-call data-i18n="cta.call">Umów rozmowę</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="b-footer wrap" id="contact">
+  <div class="b-footer__grid">
+    <div class="b-card b-footer__form">
+      <h2 id="contact-h" class="display b-h2" data-i18n="contact.title">Umów rozmowę</h2>
+      <p class="b-lead" data-i18n="contact.lead">Krótka rozmowa: my poznajemy Twój hotel, Ty poznajesz produkt.</p>
+      <form class="call-form" data-call-form action="/api/contact" method="post" aria-labelledby="contact-h">
+        <input type="hidden" name="lang" value="pl" data-form-lang>
+        <!-- spam trap: real visitors never see or fill this field -->
+        <div class="hp" aria-hidden="true"><label>Leave this field empty <input type="text" name="company_site" tabindex="-1" autocomplete="off"></label></div>
+        <div class="field">
+          <label for="f-name"><span data-i18n="contact.name">Imię i nazwisko</span> <span class="field__req" aria-hidden="true">*</span></label>
+          <input id="f-name" name="name" type="text" maxlength="160" autocomplete="name" enterkeyhint="next" required data-error="f-name-err">
+          <span class="field__err" id="f-name-err"><span role="img" aria-label="Błąd" data-i18n-attr="aria-label:contact.errorIcon">!</span> <span data-i18n="contact.required">To pole jest wymagane.</span></span>
+        </div>
+        <div class="field">
+          <label for="f-hotel"><span data-i18n="contact.hotel">Hotel</span> <span class="field__req" aria-hidden="true">*</span></label>
+          <input id="f-hotel" name="hotel" type="text" maxlength="160" autocomplete="organization" enterkeyhint="next" required data-error="f-hotel-err">
+          <span class="field__err" id="f-hotel-err"><span role="img" aria-label="Błąd" data-i18n-attr="aria-label:contact.errorIcon">!</span> <span data-i18n="contact.required">To pole jest wymagane.</span></span>
+        </div>
+        <div class="field">
+          <label for="f-reach"><span data-i18n="contact.reach">E-mail lub telefon</span> <span class="field__req" aria-hidden="true">*</span></label>
+          <input id="f-reach" name="reach" type="text" maxlength="160" enterkeyhint="next" autocapitalize="none" spellcheck="false" required data-error="f-reach-err">
+          <span class="field__err" id="f-reach-err"><span role="img" aria-label="Błąd" data-i18n-attr="aria-label:contact.errorIcon">!</span> <span data-i18n="contact.required">To pole jest wymagane.</span></span>
+        </div>
+        <div class="field">
+          <label for="f-time"><span data-i18n="contact.time">Dogodny termin (opcjonalnie)</span></label>
+          <input id="f-time" name="time" type="text" maxlength="160" enterkeyhint="send">
+        </div>
+        <div class="field">
+          <label class="check"><input type="checkbox" name="consent" value="yes" required data-error="f-consent-err"><span><span data-i18n="contact.consent">Zgadzam się na kontakt w sprawie tego zgłoszenia.</span> <span class="field__req" aria-hidden="true">*</span></span></label>
+          <span class="field__err" id="f-consent-err"><span role="img" aria-label="Błąd" data-i18n-attr="aria-label:contact.errorIcon">!</span> <span data-i18n="contact.required">To pole jest wymagane.</span></span>
+        </div>
+        <button type="submit" class="btn btn--solid b-submit" data-i18n="contact.submit">Wyślij prośbę</button>
+        <p class="form-status" data-form-status role="status"></p>
+      </form>
+    </div>
+    <div class="b-footer__info">
+      <img src="../assets/img/logo/rumilo-horizontal-white.svg" alt="Rumilo" width="157" height="28" loading="lazy">
+      <p class="muted" data-i18n="footer.tagline">System revenue management dla hoteli</p>
+      <a class="b-footer__mail" data-email hidden></a>
+      <ul class="b-footer__links">
+        <li><a href="#modules" data-i18n="nav.modules">Moduły</a></li>
+        <li><a href="#audience" data-i18n="nav.audience">Dla kogo</a></li>
+        <li><a href="#why" data-i18n="nav.why">Dlaczego Rumilo</a></li>
+      </ul>
+      <p class="b-footer__rights mono" data-i18n="footer.rights">© 2026 Rumilo</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/content.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

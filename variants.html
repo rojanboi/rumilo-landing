@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumilo landing — variants</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#151515">
+<link rel="icon" href="assets/img/logo/rumilo-favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Figtree:wght@400..700&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400..700&family=Unbounded:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<style>
+  /* Internal page for comparing the landing variants */
+  .pick {
+    display: grid;
+    gap: 40px;
+    align-content: center;
+    min-block-size: 100vh;
+    padding-block: 56px;
+  }
+
+  .pick__head {
+    display: grid;
+    gap: 16px;
+  }
+
+  .pick__head img {
+    width: auto;
+    height: 28px;
+  }
+
+  .pick__head p {
+    max-width: 60ch;
+    color: var(--silver);
+  }
+
+  .pick__group {
+    display: grid;
+    gap: 14px;
+  }
+
+  .pick__group h2 {
+    color: var(--silver);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.75rem;
+  }
+
+  .pick__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .pick__card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    padding: 24px;
+    border: 1px solid var(--line);
+    background: var(--ink);
+  }
+
+  .pick__card.is-round {
+    border-radius: 12px;
+  }
+
+  .pick__card.is-b {
+    max-width: 520px;
+    border-radius: 24px;
+  }
+
+  .pick__sample {
+    min-block-size: 2.4em;
+    font-size: 1.5rem;
+    line-height: 1.15;
+  }
+
+  .pick__sample.is-archivo {
+    font-family: "Archivo", Arial, sans-serif;
+    font-stretch: 125%;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+
+  .pick__sample.is-unbounded {
+    font-family: "Unbounded", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+
+  .pick__sample.is-serif {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: 1.9rem;
+    line-height: 1.02;
+  }
+
+  .pick__sample.is-grotesk {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+
+  .pick__sample.is-figtree {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .pick__card p:not(.pick__sample) {
+    color: var(--silver);
+    font-size: 0.875rem;
+  }
+
+  .pick__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .pick__card.is-round .btn {
+    border-radius: 8px;
+  }
+
+  .pick__card.is-b .btn {
+    border-radius: 999px;
+  }
+
+  @media (max-width: 1100px) {
+    .pick__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pick__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
+</head>
+<body>
+<main class="wrap pick">
+  <div class="pick__head">
+    <img src="assets/img/logo/rumilo-horizontal-white.svg" alt="Rumilo" width="157" height="28">
+    <h1 class="visually-hidden">Rumilo landing — variants</h1>
+    <p>The same MVP landing in several visual versions. Structure, texts and the animated first screen are shared; each version opens in Polish or English. The main page of the site is version A4.</p>
+  </div>
+
+  <section class="pick__group" aria-labelledby="pick-a">
+    <h2 id="pick-a">Variant A — Architectural · four font versions</h2>
+    <div class="pick__grid">
+      <article class="pick__card">
+        <p class="pick__sample is-archivo">Powering profitable hotels</p>
+        <p>A1 · Archivo Expanded, uppercase, square corners. Closest to the ESTATE reference.</p>
+        <div class="pick__links">
+          <a class="btn btn--solid btn--sm" href="index.html?font=archivo&amp;lang=en">EN</a>
+          <a class="btn btn--ghost btn--sm" href="index.html?font=archivo&amp;lang=pl">PL</a>
+        </div>
+      </article>
+      <article class="pick__card is-round">
+        <p class="pick__sample is-unbounded">Powering profitable hotels</p>
+        <p>A2 · Unbounded, soft wide letters, rounded corners.</p>
+        <div class="pick__links">
+          <a class="btn btn--solid btn--sm" href="index.html?font=wide&amp;lang=en">EN</a>
+          <a class="btn btn--ghost btn--sm" href="index.html?font=wide&amp;lang=pl">PL</a>
+        </div>
+      </article>
+      <article class="pick__card is-round">
+        <p class="pick__sample is-serif">Powering profitable hotels</p>
+        <p>A3 · Instrument Serif, editorial, rounded corners.</p>
+        <div class="pick__links">
+          <a class="btn btn--solid btn--sm" href="index.html?font=serif&amp;lang=en">EN</a>
+          <a class="btn btn--ghost btn--sm" href="index.html?font=serif&amp;lang=pl">PL</a>
+        </div>
+      </article>
+      <article class="pick__card is-round">
+        <p class="pick__sample is-grotesk">Powering profitable hotels</p>
+        <p>A4 · Space Grotesk, technical, rounded corners. This is the site’s main page.</p>
+        <div class="pick__links">
+          <a class="btn btn--solid btn--sm" href="index.html?font=grotesk&amp;lang=en">EN</a>
+          <a class="btn btn--ghost btn--sm" href="index.html?font=grotesk&amp;lang=pl">PL</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="pick__group" aria-labelledby="pick-b">
+    <h2 id="pick-b">Variant B — Product</h2>
+    <article class="pick__card is-b">
+      <p class="pick__sample is-figtree">Powering profitable hotels</p>
+      <p>Figtree from the brand kit, rounded cards and glass panels, a bento grid with the product interface.</p>
+      <div class="pick__links">
+        <a class="btn btn--solid btn--sm" href="b/index.html?lang=en">EN</a>
+        <a class="btn btn--ghost btn--sm" href="b/index.html?lang=pl">PL</a>
+      </div>
+    </article>
+  </section>
+</main>
+</body>
+</html>

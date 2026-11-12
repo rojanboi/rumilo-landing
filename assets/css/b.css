@@ -1,0 +1,535 @@
+/* Variant B — "Product": brand-kit typography (Figtree + JetBrains Mono),
+   rounded cards, glass panels, the product interface in the lead role. */
+
+body.variant-b {
+  --display-weight: 700;
+  --display-tracking: -0.025em;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-xs: 4px;
+  --radius-pill: 999px;
+  --radius-photo: 26px;
+  --plaque-bg: rgba(22, 22, 22, 0.68);
+  --plaque-border: rgba(255, 255, 255, 0.16);
+  --plaque-blur: blur(14px) saturate(1.15);
+}
+
+/* ---------- header: floating pill ---------- */
+
+.variant-b .site-header {
+  padding-top: 14px;
+}
+
+.variant-b .site-header__bar {
+  min-block-size: 60px;
+  padding-inline: 22px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(26, 26, 26, 0.74);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.variant-b .site-header.is-wide .site-menu a {
+  font-size: 0.875rem;
+}
+
+.variant-b .site-header:not(.is-wide) .site-header__bar {
+  padding-inline: 18px 8px;
+}
+
+@media (max-width: 350px) {
+  .variant-b .site-header:not(.is-wide) .site-header__bar {
+    padding-inline: 12px 6px;
+  }
+}
+
+/* ---------- hero ---------- */
+
+.variant-b .hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+}
+
+/* sized so "Powering profitable" and the longest rotating phrase each fit one line */
+.variant-b .hero__title {
+  font-size: clamp(2rem, 0.9rem + 3vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: wrap;
+}
+
+.variant-b .hero__lead {
+  font-size: 1.125rem;
+}
+
+.variant-b .hv-photo {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 1040px) {
+  .variant-b .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .variant-b .hero__title {
+    font-size: clamp(1.9rem, 0.6rem + 6.4vw, 3.4rem);
+  }
+}
+
+/* ---------- market signals + facts ---------- */
+
+.variant-b .ticker {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--ink);
+}
+
+.variant-b .ticker__label {
+  padding-inline-start: 22px;
+}
+
+.variant-b .tick {
+  padding-block: 15px;
+}
+
+.b-facts {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 16px 0 0;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--ink);
+}
+
+.b-fact {
+  padding: 24px 22px;
+}
+
+.b-fact + .b-fact {
+  border-left: 1px solid var(--line);
+}
+
+.b-fact dt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  align-items: baseline;
+  color: var(--silver);
+  font-size: 0.875rem;
+}
+
+.b-fact__n {
+  color: var(--white);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.b-fact dd {
+  margin: 6px 0 0;
+  color: var(--silver);
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 900px) {
+  .b-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .b-fact:first-child {
+    grid-column: span 2;
+  }
+
+  .b-fact + .b-fact {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .b-fact:nth-child(3),
+  .b-fact:nth-child(5) {
+    border-left: 1px solid var(--line);
+  }
+}
+
+/* ---------- section scaffolding ---------- */
+
+.b-section {
+  padding-top: clamp(72px, 9vw, 128px);
+}
+
+.b-head {
+  max-width: 740px;
+  margin-bottom: 40px;
+}
+
+.b-h2 {
+  margin-bottom: 18px;
+  font-size: clamp(1.9rem, 1.1rem + 2.2vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+.b-h3 {
+  margin-bottom: 8px;
+  font-size: 1.375rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.b-lead {
+  max-width: 60ch;
+  color: var(--silver);
+  font-size: 1.0625rem;
+}
+
+.b-card {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--ink);
+}
+
+/* ---------- bento ---------- */
+
+.b-bento {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.b-bento .b-card {
+  display: grid;
+  gap: 24px;
+  align-content: space-between;
+}
+
+.b-card--7 {
+  grid-column: span 7;
+}
+
+.b-card--5 {
+  grid-column: span 5;
+}
+
+.b-card__text p {
+  max-width: 46ch;
+  color: var(--silver);
+}
+
+.b-card .ui {
+  border-radius: 16px;
+  background: var(--black);
+}
+
+.b-cal {
+  padding: 0 0 4px;
+  font-size: 0.875rem;
+}
+
+/* flatter cells so the calendar card matches the height of the rates card beside it */
+.b-cal .cal__day {
+  aspect-ratio: 1 / 0.66;
+}
+
+.b-bars {
+  height: 150px;
+}
+
+@media (max-width: 900px) {
+  .b-card--7,
+  .b-card--5 {
+    grid-column: 1 / -1;
+  }
+
+  .b-card {
+    padding: 22px;
+  }
+}
+
+/* ---------- how it decides ---------- */
+
+.b-decide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: center;
+}
+
+.b-decide__btn {
+  margin-top: 28px;
+}
+
+.b-stage {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 4vw, 56px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(86, 102, 107, 0.6), transparent 60%),
+    linear-gradient(160deg, #2a3133, #191919 70%);
+}
+
+.b-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(closest-side, #000, transparent);
+  mask-image: radial-gradient(closest-side, #000, transparent);
+}
+
+.b-stage__card {
+  position: relative;
+  max-width: 420px;
+  margin-inline: auto;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(21, 21, 21, 0.8);
+  box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 900px) {
+  .b-decide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- for whom ---------- */
+
+.b-aud {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.b-aud .b-card {
+  padding: 24px;
+}
+
+.b-aud .b-card::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin-bottom: 52px;
+  background: var(--sand);
+}
+
+.b-aud p {
+  color: var(--silver);
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 1000px) {
+  .b-aud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .b-aud {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .b-aud .b-card::before {
+    margin-bottom: 24px;
+  }
+}
+
+/* ---------- why ---------- */
+
+.b-why {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 44px);
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.b-why__col ul {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  color: var(--silver);
+  font-size: 0.9375rem;
+}
+
+.b-why__col li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.b-why__col li::before {
+  content: "";
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--sand);
+  border-radius: 50%;
+}
+
+@media (max-width: 900px) {
+  .b-why {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+/* ---------- CTA over the hotel photo ---------- */
+
+.b-cta-wrap {
+  padding-top: clamp(72px, 9vw, 128px);
+}
+
+.b-cta {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  align-items: end;
+  min-height: 400px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+}
+
+.b-cta img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.b-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(21, 21, 21, 0.88) 0%, rgba(21, 21, 21, 0.5) 55%, rgba(21, 21, 21, 0.2) 100%);
+}
+
+.b-cta__in {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 26px;
+  justify-items: start;
+  padding: clamp(28px, 5vw, 64px);
+}
+
+.b-cta__title {
+  max-width: 13em;
+  font-size: clamp(2rem, 1rem + 2.8vw, 3.5rem);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+}
+
+/* ---------- footer ---------- */
+
+.b-footer {
+  padding-block: clamp(48px, 7vw, 96px) 40px;
+}
+
+.b-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: start;
+}
+
+.b-footer__form {
+  padding: clamp(24px, 3.5vw, 44px);
+}
+
+.b-footer__form .b-h2 {
+  margin-bottom: 10px;
+  font-size: clamp(1.7rem, 1.1rem + 1.6vw, 2.4rem);
+}
+
+.b-footer__form .b-lead {
+  margin-bottom: 28px;
+  font-size: 1rem;
+}
+
+.variant-b .field {
+  gap: 6px;
+}
+
+.variant-b .field input:not([type="checkbox"]) {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.variant-b .field input:not([type="checkbox"]):focus-visible {
+  padding: 12px 14px;
+  border: 1px solid var(--white);
+  box-shadow: 0 0 0 1px var(--white);
+}
+
+.variant-b .field input:not([type="checkbox"]):user-invalid {
+  padding: 12px 14px;
+  border: 1px solid var(--down);
+  box-shadow: 0 0 0 1px var(--down);
+}
+
+.b-submit {
+  justify-self: start;
+}
+
+.b-footer__info {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  padding-top: 12px;
+}
+
+.b-footer__mail {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 0.8rem + 1.2vw, 1.75rem);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.b-footer__mail:hover {
+  color: var(--sand);
+}
+
+.b-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+  margin-top: 6px;
+  color: var(--silver);
+  font-size: 0.875rem;
+}
+
+.b-footer__links a {
+  display: inline-block;
+  padding-block: 10px;
+  text-decoration: none;
+}
+
+.b-footer__links a:hover {
+  color: var(--white);
+}
+
+.b-footer__rights {
+  margin-top: 22px;
+  color: #8a8a8a;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .b-footer__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
